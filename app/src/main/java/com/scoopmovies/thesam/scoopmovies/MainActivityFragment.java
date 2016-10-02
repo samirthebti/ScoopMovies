@@ -21,9 +21,20 @@ import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
  * A placeholder fragment containing a simple view.
  */
 public class MainActivityFragment extends Fragment {
+    public static final String LOG_TAG = MainActivityFragment.class.getSimpleName();
+    public static final String LOG_MOVIES = "movies";
     private List<Movies> movies;
     private RecyclerView mRecyclerView;
     private int desiredColumnWidth;
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (outState == null || !outState.containsKey(LOG_MOVIES)) {
+
+        }
+    }
+
 
     public MainActivityFragment() {
         desiredColumnWidth = R.dimen.desired_column_width;
@@ -38,7 +49,6 @@ public class MainActivityFragment extends Fragment {
         int gridWidth = Utils.getScreenWidth(getActivity());
         int optimalColumnCount = Math.max(Math.round((1f * gridWidth) / desiredColumnWidth), 1);
         int actualPosterViewWidth = gridWidth / optimalColumnCount;
-
         mRecyclerView.setHasFixedSize(true);
         movies = ApiUtils.getMovies(getActivity());
         GridAdapter gridAdapter = new GridAdapter(getActivity(), movies, actualPosterViewWidth);

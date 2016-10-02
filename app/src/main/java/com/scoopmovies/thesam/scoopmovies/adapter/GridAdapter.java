@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -29,13 +30,13 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView posterImage;
-//        public TextView title;
+        public TextView title;
 
 
         public ViewHolder(View v) {
             super(v);
             posterImage = (ImageView) v.findViewById(R.id.poster);
-//            title = (TextView) v.findViewById(R.id.title);
+            title = (TextView) v.findViewById(R.id.title);
         }
     }
 
@@ -60,7 +61,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         Movies movie = mMovies.get(position);
 
 
-//        holder.title.setText(movie.getTitre());
+        holder.title.setText(movie.getTitre());
         Glide.with(mContext).load(ApiUtils.POSTER_BASE_URL + movie.getPoster())
                 .override(mPosterWidth, mPosterHeight)
                 .error(R.drawable.posternotfound)
