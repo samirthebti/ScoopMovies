@@ -1,11 +1,15 @@
 package com.scoopmovies.thesam.scoopmovies;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
 import com.scoopmovies.thesam.scoopmovies.adapter.GridAdapter;
@@ -26,6 +30,7 @@ public class MainActivityFragment extends Fragment {
     private List<Movies> movies;
     private RecyclerView mRecyclerView;
     private int desiredColumnWidth;
+    private CoordinatorLayout coordinatorLayout;
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -35,7 +40,6 @@ public class MainActivityFragment extends Fragment {
         }
     }
 
-
     public MainActivityFragment() {
         desiredColumnWidth = R.dimen.desired_column_width;
     }
@@ -44,6 +48,7 @@ public class MainActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+//        coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.main_coordinator);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         // compute optimal number of columns based on available width
         int gridWidth = Utils.getScreenWidth(getActivity());
@@ -55,8 +60,24 @@ public class MainActivityFragment extends Fragment {
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         mRecyclerView.setItemAnimator(new SlideInUpAnimator());
         mRecyclerView.setAdapter(gridAdapter);
+        mRecyclerView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent selectedMovie = new Intent(getActivity(), DetailActivity.class);
+                selectedMovie.putExtra("station", movies.get(1));
+                startActivity(selectedMovie);
+                Log.d(LOG_TAG, "onClick: ");
 
-
+            }
+        });
+//        ItemClickSupport.addTo(mRecyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+//            @Override
+//            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+//                Intent selectedMovie = new Intent(getActivity(), DetailActivity.class);
+//                selectedMovie.putExtra("station", movies.get(position));
+//                startActivity(selectedMovie);
+//            }
+//        });
         return rootView;
     }
 }
