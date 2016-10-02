@@ -12,6 +12,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.scoopmovies.thesam.scoopmovies.R;
 import com.scoopmovies.thesam.scoopmovies.model.Movies;
 import com.scoopmovies.thesam.scoopmovies.services.ApiUtils;
+import com.scoopmovies.thesam.scoopmovies.utils.Utils;
 
 import java.util.List;
 
@@ -38,30 +39,30 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         }
     }
 
-    public GridAdapter(Context mContext, List<Movies> mMovies) {
+    public GridAdapter(Context mContext, List<Movies> mMovies, int actualPosterViewWidth) {
         this.mContext = mContext;
         this.mMovies = mMovies;
+        mPosterWidth = actualPosterViewWidth;
+        mPosterHeight = (int) (actualPosterViewWidth / Utils.TMDB_POSTER_SIZE_RATIO);
+
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.movie_view, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
-//        RecyclerView.LayoutParams lp = (RecyclerView.LayoutParams) view.getLayoutParams();
-//        lp.width = mPosterWidth;
-//        lp.height = mPosterHeight;
-//        view.setLayoutParams(lp);
+
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Movies movie = mMovies.get(position);
+
+
 //        holder.title.setText(movie.getTitre());
         Glide.with(mContext).load(ApiUtils.POSTER_BASE_URL + movie.getPoster())
-                .centerCrop()
-                .fitCenter()
-                .crossFade()
+                .override(mPosterWidth, mPosterHeight)
                 .error(R.drawable.posternotfound)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.posterImage);
@@ -71,6 +72,11 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return mMovies.size();
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return super.getItemId(position);
     }
 
 }

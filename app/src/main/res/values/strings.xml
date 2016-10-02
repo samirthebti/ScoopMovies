@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">ScoopMovies</string>
     <string name="action_settings">Sort by</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="share">Share</string>
 </resources>

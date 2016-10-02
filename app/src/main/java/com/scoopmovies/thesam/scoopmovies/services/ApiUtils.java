@@ -2,7 +2,6 @@ package com.scoopmovies.thesam.scoopmovies.services;
 
 import android.content.Context;
 import android.net.Uri;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -76,7 +75,6 @@ public class ApiUtils {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(context, "Erreur ", Toast.LENGTH_LONG).show();
 
                     }
                 });
