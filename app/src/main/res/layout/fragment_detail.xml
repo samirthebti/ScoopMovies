@@ -15,7 +15,8 @@
         android:src="@drawable/posternotfound"
         app:srcCompat="@drawable/posternotfound"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
         />
 
     <ImageView
