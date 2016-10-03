@@ -1,22 +1,18 @@
 package com.scoopmovies.thesam.scoopmovies.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Parcelable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.scoopmovies.thesam.scoopmovies.DetailActivity;
 import com.scoopmovies.thesam.scoopmovies.R;
 import com.scoopmovies.thesam.scoopmovies.model.Movies;
-import com.scoopmovies.thesam.scoopmovies.services.ApiUtils;
+import com.scoopmovies.thesam.scoopmovies.network.ApiUtils;
 import com.scoopmovies.thesam.scoopmovies.utils.Utils;
 
 import java.util.List;
@@ -70,16 +66,16 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         Glide.with(mContext).load(ApiUtils.POSTER_BASE_URL + movie.getPoster())
                 .override(mPosterWidth, mPosterHeight)
                 .error(R.drawable.posternotfound)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .diskCacheStrategy(DiskCacheStrategy.RESULT)
                 .into(holder.posterImage);
-        holder.posterImage.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent selectedMovie = new Intent(mContext, DetailActivity.class);
-                selectedMovie.putExtra("movie", (Parcelable) movie);
-                mContext.startActivity(selectedMovie);
-            }
-        });
+//        holder.posterImage.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent selectedMovie = new Intent(mContext, DetailActivity.class);
+//                selectedMovie.putExtra("movie", (Parcelable) movie);
+//                mContext.startActivity(selectedMovie);
+//            }
+//        });
 
 
     }

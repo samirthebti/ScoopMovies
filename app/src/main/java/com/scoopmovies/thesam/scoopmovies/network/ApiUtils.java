@@ -1,7 +1,8 @@
-package com.scoopmovies.thesam.scoopmovies.services;
+package com.scoopmovies.thesam.scoopmovies.network;
 
 import android.content.Context;
 import android.net.Uri;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -75,6 +76,7 @@ public class ApiUtils {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(context, "Network Failed", Toast.LENGTH_LONG).show();
 
                     }
                 });
