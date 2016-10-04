@@ -83,6 +83,7 @@ public class MainActivityFragment extends Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 //        coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.main_coordinator);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
+        mRecyclerView.setNestedScrollingEnabled(false);
         if (savedInstanceState == null || !savedInstanceState.containsKey(Utils.PARC_MOVIES_TAG)) {
             movies = getMovies(getActivity(), mChoix);
             Log.d(LOG_TAG, "parcel sucess savedinstance null");
@@ -108,7 +109,7 @@ public class MainActivityFragment extends Fragment {
                 selectedMovie.putExtra("movie", movies.get(position));
                 selectedMovie.putExtra("item_selected", position);
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                    selectedMovie.putExtra(Utils.EXTRA_MOVIE_POSITION,position);
+                    selectedMovie.putExtra(Utils.EXTRA_MOVIE_POSITION, position);
                     ActivityOptions activityOptions = ActivityOptions
                             .makeSceneTransitionAnimation(getActivity(),
                                     new android.util.Pair<View, String>(v, Utils.SHARED_TRANSITION_NAME + position));
@@ -120,8 +121,6 @@ public class MainActivityFragment extends Fragment {
         });
         return rootView;
     }
-
-
 
 
     @Override

@@ -11,13 +11,6 @@
         app:showAsAction="ifRoom"
         >
         <menu>
-
-            <item
-                android:id="@+id/toprated_menu_item"
-                android:orderInCategory="200"
-                android:title="TopRated"
-                app:showAsAction="never|withText"
-                />
             <item
                 android:id="@+id/popular_menu_item"
                 android:orderInCategory="200"
@@ -25,6 +18,14 @@
                 app:showAsAction="never|withText"
                 tools:ignore="HardcodedText"
                 />
+
+            <item
+                android:id="@+id/toprated_menu_item"
+                android:orderInCategory="200"
+                android:title="TopRated"
+                app:showAsAction="never|withText"
+                />
+
 
         </menu>
 

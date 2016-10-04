@@ -54,11 +54,11 @@ public class DetailActivityFragment extends Fragment {
             Log.d(TAG, "succes ");
         }
 
-        TextView title = (TextView) rootView.findViewById(R.id.title);
+        TextView title = (TextView) rootView.findViewById(R.id.movie_detail_title);
         title.setText(movie.getTitre());
-        TextView overview = (TextView) rootView.findViewById(R.id.overview);
+        TextView overview = (TextView) rootView.findViewById(R.id.movie_detail_overview);
         overview.setText(movie.getOverview());
-        ImageView poster = (ImageView) rootView.findViewById(R.id.poster);
+        ImageView poster = (ImageView) rootView.findViewById(R.id.movie_detail_poster);
         Glide.with(getActivity()).load(ApiUtils.POSTER_BASE_URL + movie.getPoster())
                 .error(R.drawable.posternotfound)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -66,7 +66,7 @@ public class DetailActivityFragment extends Fragment {
 
         // TODO: 4/10/16 Remplace the coverview by the correspended id
         moviePosition = getActivity().getIntent().getIntExtra(Utils.EXTRA_MOVIE_POSITION, 0);
-        mCoverImageView = (ImageView) rootView.findViewById(R.id.poster);
+        mCoverImageView = (ImageView) rootView.findViewById(R.id.movie_detail_poster);
         if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
             mCoverImageView.setTransitionName(
                     Utils.SHARED_TRANSITION_NAME + moviePosition);

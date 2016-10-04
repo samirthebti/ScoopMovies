@@ -26,7 +26,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <fragment android:id="@+id/fragment"
+    <fragment android:id="@+id/activity_detail_fragment"
         android:name="com.scoopmovies.thesam.scoopmovies.DetailActivityFragment"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"

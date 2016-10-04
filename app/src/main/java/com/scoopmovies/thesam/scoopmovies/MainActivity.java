@@ -18,12 +18,12 @@ public class MainActivity extends AppCompatActivity {
                 .getIntExtra("movie_position", 0);
 
 
-//        if (savedInstanceState == null) {
-//            getSupportFragmentManager()
-//                    .beginTransaction()
-//                    .replace(R.id., new MainActivityFragment())
-//                    .commit();
-//        }
+        if (savedInstanceState == null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.fragment, new MainActivityFragment())
+                    .commit();
+        }
 
 
     }
