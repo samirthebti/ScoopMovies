@@ -46,7 +46,6 @@ public class DetailActivityFragment extends Fragment {
             movie = savedInstanceState.getParcelable(Utils.PARC_MOVIE_TAG);
             Log.d(TAG, "succes ");
         }
-
         TextView title = (TextView) rootView.findViewById(R.id.title);
         title.setText(movie.getTitre());
         TextView overview = (TextView) rootView.findViewById(R.id.overview);

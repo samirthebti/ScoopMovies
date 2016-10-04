@@ -4,10 +4,32 @@
     tools:context="com.scoopmovies.thesam.scoopmovies.MainActivity"
     >
     <item
-        android:id="@+id/sort_by"
+        android:id="@+id/sortby"
+        android:checkable="false"
         android:icon="@drawable/ic_subject_white_24dp"
-        android:orderInCategory="100"
         android:title="@string/action_settings"
-        app:showAsAction="always"
-        />
+        app:showAsAction="ifRoom"
+
+        >
+        <menu>
+
+
+            <item
+                android:id="@+id/toprated_menu_item"
+                android:orderInCategory="200"
+                android:title="TopRated"
+                app:showAsAction="never|withText"
+                />
+            <item
+                android:id="@+id/popular_menu_item"
+                android:orderInCategory="200"
+                android:title="Popular"
+                app:showAsAction="never|withText"
+                tools:ignore="HardcodedText"
+                />
+
+        </menu>
+
+
+    </item>
 </menu>

@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 public class ApiUtils {
 
-    public static final String BASE_URL = "https://api.themoviedb.org/3/movie/popular?api_key=";
+    public static final String BASE_URL = "https://api.themoviedb.org/3/movie/";
     public static final String API_KEY = "api_key";
     public static final String TITLE = "title";
     public static final String ID = "id";
@@ -33,23 +33,23 @@ public class ApiUtils {
     public static final String TAG_MOVIE = "results";
     public static final String POSTER_BASE_URL = "http://image.tmdb.org/t/p/w500/";
 
-    public static String BuildUrl() {
-        Uri buildUrl = Uri.parse(BASE_URL)
+    public static String buildUrl(String sortBy) {
+        Uri buildedUrl = Uri.parse(BASE_URL)
                 .buildUpon()
+                .appendPath(sortBy)
                 .appendQueryParameter(API_KEY, com.scoopmovies.thesam.scoopmovies.BuildConfig.THE_MOVIE_DB_API_KEY)
                 .build();
-        return buildUrl.toString();
+        return buildedUrl.toString();
     }
 
-    public static ArrayList getMovies(final Context context) {
+    public static ArrayList getMovies(final Context context, final String sortBy) {
         final ArrayList<Movies> myMovies = new ArrayList<>();
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                (Request.Method.GET, BuildUrl(), null, new Response.Listener<JSONObject>() {
+                (Request.Method.GET, buildUrl(sortBy), null, new Response.Listener<JSONObject>() {
                     JSONArray movies;
 
                     @Override
                     public void onResponse(JSONObject response) {
-
                         if (response != null) {
                             JSONObject jsonObj = null;
                             try {
@@ -64,10 +64,8 @@ public class ApiUtils {
                                     movie.setPoster(b.getString(POSTER));
                                     myMovies.add(movie);
                                 }
-
                             } catch (JSONException e) {
                                 e.printStackTrace();
-
                             }
                         }
 //                        Toast.makeText(context, myMovies.toString(), Toast.LENGTH_LONG).show();
@@ -76,7 +74,7 @@ public class ApiUtils {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(context, "Network Failed", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "Error While Fetching Data", Toast.LENGTH_LONG).show();
 
                     }
                 });

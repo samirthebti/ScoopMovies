@@ -1,5 +1,6 @@
 package com.scoopmovies.thesam.scoopmovies;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -10,19 +11,34 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.scoopmovies.thesam.scoopmovies.adapter.GridAdapter;
 import com.scoopmovies.thesam.scoopmovies.model.Movies;
 import com.scoopmovies.thesam.scoopmovies.network.ApiUtils;
+import com.scoopmovies.thesam.scoopmovies.network.VolleySing;
 import com.scoopmovies.thesam.scoopmovies.utils.ItemClickSupport;
+import com.scoopmovies.thesam.scoopmovies.utils.ItemClickSupport.OnItemClickListener;
 import com.scoopmovies.thesam.scoopmovies.utils.Utils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
+
+import static com.scoopmovies.thesam.scoopmovies.network.ApiUtils.buildUrl;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -33,7 +49,10 @@ public class MainActivityFragment extends Fragment {
     private List<Movies> movies;
     private RecyclerView mRecyclerView;
     private int desiredColumnWidth;
+    private GridAdapter mGridAdapter;
     private CoordinatorLayout coordinatorLayout;
+    private String mChoix = "popular";
+    private ArrayList<Movies> myMovies = new ArrayList<>();
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -49,11 +68,12 @@ public class MainActivityFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        movies.clear();
+
     }
 
     public MainActivityFragment() {
         desiredColumnWidth = R.dimen.desired_column_width;
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -63,7 +83,7 @@ public class MainActivityFragment extends Fragment {
 //        coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.main_coordinator);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         if (savedInstanceState == null || !savedInstanceState.containsKey(Utils.PARC_MOVIES_TAG)) {
-            movies = ApiUtils.getMovies(getActivity());
+            movies = getMovies(getActivity(), mChoix);
             Log.d(LOG_TAG, "parcel sucess savedinstance null");
         } else if (savedInstanceState != null && savedInstanceState.containsKey(Utils.PARC_MOVIES_TAG)) {
             movies = savedInstanceState.getParcelableArrayList(Utils.PARC_MOVIES_TAG);
@@ -75,12 +95,12 @@ public class MainActivityFragment extends Fragment {
         int actualPosterViewWidth = gridWidth / optimalColumnCount;
 
         mRecyclerView.setHasFixedSize(true);
-        GridAdapter gridAdapter = new GridAdapter(getActivity(), movies, actualPosterViewWidth);
+        mGridAdapter = new GridAdapter(getActivity(), movies, actualPosterViewWidth);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        mRecyclerView.setItemAnimator(new SlideInUpAnimator());
-        mRecyclerView.setAdapter(gridAdapter);
+        mGridAdapter.notifyDataSetChanged();
+        mRecyclerView.setAdapter(mGridAdapter);
         // on RecyclerView Item Clicked
-        ItemClickSupport.addTo(mRecyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+        ItemClickSupport.addTo(mRecyclerView).setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
                 Intent selectedMovie = new Intent(getActivity(), DetailActivity.class);
@@ -89,5 +109,76 @@ public class MainActivityFragment extends Fragment {
             }
         });
         return rootView;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.toprated_menu_item) {
+            mChoix = "top_rated";
+            movies.clear();
+            movies = getMovies(getActivity(), mChoix);
+            mRecyclerView.getRecycledViewPool().clear();
+            Log.d(LOG_TAG, "onOptionsItemSelected: ");
+        } else if (id == R.id.popular_menu_item) {
+            mChoix = "popular";
+            movies.clear();
+            movies = getMovies(getActivity(), mChoix);
+            mRecyclerView.getRecycledViewPool().clear();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+
+    }
+
+    public ArrayList getMovies(final Context context, final String sortBy) {
+
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                (Request.Method.GET, buildUrl(sortBy), null, new Response.Listener<JSONObject>() {
+                    JSONArray movies;
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        if (response != null) {
+                            JSONObject jsonObj = null;
+                            try {
+                                jsonObj = new JSONObject(response.toString());
+                                movies = jsonObj.getJSONArray(ApiUtils.TAG_MOVIE);
+                                for (int i = 0; i < movies.length(); i++) {
+                                    Movies movie = new Movies();
+                                    JSONObject b = (JSONObject) movies.get(i);
+                                    movie.setId(b.getString(ApiUtils.ID));
+                                    movie.setOverview(b.getString(ApiUtils.OVERVIEW));
+                                    movie.setTitre(b.getString(ApiUtils.TITLE));
+                                    movie.setPoster(b.getString(ApiUtils.POSTER));
+                                    myMovies.add(movie);
+
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        mGridAdapter.notifyDataSetChanged();
+//                        Toast.makeText(context, myMovies.toString(), Toast.LENGTH_LONG).show();
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(context, "Error While Fetching Data", Toast.LENGTH_LONG).show();
+
+                    }
+                });
+        // Access the RequestQueue through your singleton class. the context of  fragment is geted
+        // by call getActivity() methode
+        VolleySing.getInstance(context).addToRequestQueue(jsObjRequest);
+
+
+        return myMovies;
     }
 }

@@ -76,9 +76,9 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
 //                mContext.startActivity(selectedMovie);
 //            }
 //        });
-
-
     }
+
+
 
     @Override
     public int getItemCount() {

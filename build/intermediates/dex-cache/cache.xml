@@ -2,258 +2,6 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support.constraint/constraint-layout/1.0.0-alpha9/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="f2b64f6a762f61a2379d6a79af03e2ee56eefe0b">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/pre-dexed/debug/com.android.support.constraint-constraint-layout-1.0.0-alpha9_f6852565038924fa8695090480b21cb728c698da.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-24.2.1_b1bd1a9fe84348e949b7d6ffafe6ec53684a3fb4/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/jp.wasabeef/recyclerview-animators/2.2.3/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="8e325e9ba5c23d635d0cfaa76c349fca83101f8a">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/pre-dexed/debug/jp.wasabeef-recyclerview-animators-2.2.3_1316bc6c9945839fc65ec047f4b56d3f22fd3c52.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_f7eba638bb11b04c1401445bcb86f2149758a0c7/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/thesam/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.1/support-annotations-24.2.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/pre-dexed/debug/support-annotations-24.2.1_8ff9d9f43197e81147c975aa86cac7180d5b3841.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-24.2.1_922f0a78a82082535149e1c0b15022089c8d8f2c.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.2.1_382c7fae456494d156a3f309988908ddb2c7ffb5/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="96e33a7aaee00ab64270e2a9887b8f9ef32c8b73">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/pre-dexed/debug/com.android.support-cardview-v7-24.2.0_a9d8d0da130c3b3c4b2cf6c45008d3c133c222b8.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-24.2.1_162a408d3d1389a72b538a62d7e045bff6dc2512/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_413a71ad18ab7d9215966bc1d4dca03c3f390731.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/palette-v7/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="3b7105277df9a8013468215c451ddefac2499d3a">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/pre-dexed/debug/com.android.support-palette-v7-24.2.1_8e65e5fe09dd119f6d835a6a2c3bf1fe32530d77.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.2.1_899fa1d882e949883b7d97d42b9b7a5c58626ae8/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.volley/volley/1.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="2cd4b982617e544728de0782d718a58ce1b06e3f">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/pre-dexed/debug/com.android.volley-volley-1.0.0_b79d238aa803b28a8faae28ceafdbed1fc9dc675.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/thesam/.gradle/caches/modules-2/files-2.1/commons-cli/commons-cli/1.2/2bf96b7aa8b611c177d329452af1dc933e14501c/commons-cli-1.2.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="2bf96b7aa8b611c177d329452af1dc933e14501c">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/commons-cli-1.2_0ccd2cd2f32a7dacb561d1f55cca34d1d66d7847/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.2.1_8db84d169918cef4169fa11bf696b7959d865af6/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="867dad63c33388ff8c7644b236579355036d075f">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_1b2113dc6e018571dc4906659fa18fd35bd9cfe8/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/thesam/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.7.0/9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4/glide-3.7.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/pre-dexed/debug/glide-3.7.0_6a83491e040728c359adbe7dcb906502e71f5f1c.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/design/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-24.2.1_dd24b7f831a2416a59277020e8d35c79daec428f/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="3d1f3f25f36f75a898ef59b337cfd8296648d6df">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_617d94231233511bddbf8199294be27db8a41d53/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/thesam/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/2.0.1/516c03b21d50a644d538de0f0369c620989cd8f0/jsr305-2.0.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="516c03b21d50a644d538de0f0369c620989cd8f0">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/pre-dexed/debug/jsr305-2.0.1_b661076efee06d162be40fb8d622e9da431a69db.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.facebook.stetho/stetho/1.4.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="26b6f0185cbba8917ba9d9d0bd170f95311622ab">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.stetho-stetho-1.4.1_75b37dfb414ceeb5ee066219a94a54964b96be25/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-24.2.1_6ad12b1600125a6ea0946dc6d2557054f2acfbde.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-24.2.1_116a783b47ab9d77727add64140ab87798a9bc4a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/thesam/Android/Sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.0-alpha9/constraint-layout-solver-1.0.0-alpha9.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="6a908fd0803cc5f65b007101002aec06dc7544da">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/constraint-layout-solver-1.0.0-alpha9_84a974d1330133c9ebe4fc8c5a569ee2c32b5258/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-24.2.1_bcb46852958fce0fc29933ab1a3fba1a86c74f97.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_639fefd954c7a0b83476681ea6d1490885466923/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_fab7e41ef2c24377e3626ddc1b72ec9affb15593/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-24.2.1_0c4328d1d6dfe4b998b650dba623760db6715ee0.jar" />
-    </item>
-    <item
         is-multidex="true"
         jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support.constraint/constraint-layout/1.0.0-alpha9/jars/classes.jar"
         jumboMode="true"
@@ -261,15 +9,6 @@
         revision="24.0.2"
         sha1="f2b64f6a762f61a2379d6a79af03e2ee56eefe0b">
         <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support.constraint-constraint-layout-1.0.0-alpha9_f6852565038924fa8695090480b21cb728c698da/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-24.2.1_382c7fae456494d156a3f309988908ddb2c7ffb5.jar" />
     </item>
     <item
         is-multidex="true"
@@ -282,6 +21,24 @@
     </item>
     <item
         is-multidex="true"
+        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-24.2.1_b1bd1a9fe84348e949b7d6ffafe6ec53684a3fb4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_f7eba638bb11b04c1401445bcb86f2149758a0c7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/jp.wasabeef/recyclerview-animators/2.2.3/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -290,22 +47,13 @@
         <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/jp.wasabeef-recyclerview-animators-2.2.3_1316bc6c9945839fc65ec047f4b56d3f22fd3c52/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.1/jars/classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_f7eba638bb11b04c1401445bcb86f2149758a0c7.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-24.2.1_b1bd1a9fe84348e949b7d6ffafe6ec53684a3fb4.jar" />
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.2.1_382c7fae456494d156a3f309988908ddb2c7ffb5/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -317,22 +65,22 @@
         <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-24.2.0_a9d8d0da130c3b3c4b2cf6c45008d3c133c222b8/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-24.2.1_8db84d169918cef4169fa11bf696b7959d865af6.jar" />
-    </item>
-    <item
-        is-multidex="false"
+        is-multidex="true"
         jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/classes.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-24.2.1_162a408d3d1389a72b538a62d7e045bff6dc2512.jar" />
+        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-24.2.1_162a408d3d1389a72b538a62d7e045bff6dc2512/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.2.1_899fa1d882e949883b7d97d42b9b7a5c58626ae8/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -362,22 +110,13 @@
         <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_413a71ad18ab7d9215966bc1d4dca03c3f390731/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-24.2.1_899fa1d882e949883b7d97d42b9b7a5c58626ae8.jar" />
-    </item>
-    <item
-        is-multidex="false"
+        is-multidex="true"
         jar="/home/thesam/.gradle/caches/modules-2/files-2.1/commons-cli/commons-cli/1.2/2bf96b7aa8b611c177d329452af1dc933e14501c/commons-cli-1.2.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="2bf96b7aa8b611c177d329452af1dc933e14501c">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/pre-dexed/debug/commons-cli-1.2_0ccd2cd2f32a7dacb561d1f55cca34d1d66d7847.jar" />
+        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/commons-cli-1.2_0ccd2cd2f32a7dacb561d1f55cca34d1d66d7847/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -389,13 +128,13 @@
         <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.volley-volley-1.0.0_b79d238aa803b28a8faae28ceafdbed1fc9dc675/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.1/jars/classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="867dad63c33388ff8c7644b236579355036d075f">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_1b2113dc6e018571dc4906659fa18fd35bd9cfe8.jar" />
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.2.1_8db84d169918cef4169fa11bf696b7959d865af6/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -408,6 +147,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_1b2113dc6e018571dc4906659fa18fd35bd9cfe8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/thesam/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.7.0/9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4/glide-3.7.0.jar"
         jumboMode="true"
         optimize="true"
@@ -416,13 +164,22 @@
         <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/glide-3.7.0_6a83491e040728c359adbe7dcb906502e71f5f1c/classes.dex" />
     </item>
     <item
-        is-multidex="false"
+        is-multidex="true"
         jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/design/24.2.1/jars/classes.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/pre-dexed/debug/com.android.support-design-24.2.1_dd24b7f831a2416a59277020e8d35c79daec428f.jar" />
+        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-24.2.1_dd24b7f831a2416a59277020e8d35c79daec428f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="5639561b00c909f42da79cb6fa62cd39b35c2d31">
+        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_617d94231233511bddbf8199294be27db8a41d53/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -430,8 +187,17 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="64de552de455d2db3e6a3c5192f79d95addf1b0c">
+        sha1="ddb0dec969b378a3a0992d2099967b931ff1118d">
         <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_70efd7b8787ef47f377d5a02976ea9d01d29f278/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.facebook.stetho/stetho/1.4.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="26b6f0185cbba8917ba9d9d0bd170f95311622ab">
+        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.stetho-stetho-1.4.1_75b37dfb414ceeb5ee066219a94a54964b96be25/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -443,13 +209,13 @@
         <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/jsr305-2.0.1_b661076efee06d162be40fb8d622e9da431a69db/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.facebook.stetho/stetho/1.4.1/jars/classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="26b6f0185cbba8917ba9d9d0bd170f95311622ab">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/pre-dexed/debug/com.facebook.stetho-stetho-1.4.1_75b37dfb414ceeb5ee066219a94a54964b96be25.jar" />
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-24.2.1_116a783b47ab9d77727add64140ab87798a9bc4a/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -461,40 +227,22 @@
         <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.2.1_6ad12b1600125a6ea0946dc6d2557054f2acfbde/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-24.2.1_116a783b47ab9d77727add64140ab87798a9bc4a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_639fefd954c7a0b83476681ea6d1490885466923.jar" />
-    </item>
-    <item
-        is-multidex="false"
+        is-multidex="true"
         jar="/home/thesam/Android/Sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.0-alpha9/constraint-layout-solver-1.0.0-alpha9.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="6a908fd0803cc5f65b007101002aec06dc7544da">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/pre-dexed/debug/constraint-layout-solver-1.0.0-alpha9_84a974d1330133c9ebe4fc8c5a569ee2c32b5258.jar" />
+        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/constraint-layout-solver-1.0.0-alpha9_84a974d1330133c9ebe4fc8c5a569ee2c32b5258/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_fab7e41ef2c24377e3626ddc1b72ec9affb15593.jar" />
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_639fefd954c7a0b83476681ea6d1490885466923/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -504,6 +252,15 @@
         revision="24.0.2"
         sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
         <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-24.2.1_bcb46852958fce0fc29933ab1a3fba1a86c74f97/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_fab7e41ef2c24377e3626ddc1b72ec9affb15593/classes.dex" />
     </item>
 
 </items>
