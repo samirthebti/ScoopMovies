@@ -178,7 +178,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="5639561b00c909f42da79cb6fa62cd39b35c2d31">
+        sha1="93a1a4e89889224467a747e097b635aafbba42fb">
         <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_617d94231233511bddbf8199294be27db8a41d53/classes.dex" />
     </item>
     <item
@@ -187,7 +187,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="ddb0dec969b378a3a0992d2099967b931ff1118d">
+        sha1="4746902c3a3bedf0a77d1a75fd759e16446274f0">
         <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_70efd7b8787ef47f377d5a02976ea9d01d29f278/classes.dex" />
     </item>
     <item

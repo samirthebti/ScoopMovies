@@ -1,6 +1,8 @@
 package com.scoopmovies.thesam.scoopmovies.adapter;
 
 import android.content.Context;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,16 +70,11 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
                 .error(R.drawable.posternotfound)
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)
                 .into(holder.posterImage);
-//        holder.posterImage.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent selectedMovie = new Intent(mContext, DetailActivity.class);
-//                selectedMovie.putExtra("movie", (Parcelable) movie);
-//                mContext.startActivity(selectedMovie);
-//            }
-//        });
+        // we will try to animate the transition
+        if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
+            holder.posterImage.setTransitionName("poster" + position);
+        }
     }
-
 
 
     @Override

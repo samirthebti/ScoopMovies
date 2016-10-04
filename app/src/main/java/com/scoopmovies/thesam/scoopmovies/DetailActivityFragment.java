@@ -2,6 +2,8 @@ package com.scoopmovies.thesam.scoopmovies;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,8 +26,11 @@ import com.scoopmovies.thesam.scoopmovies.utils.Utils;
 public class DetailActivityFragment extends Fragment {
     public static final String TAG = DetailActivityFragment.class.getSimpleName();
     private Movies movie;
+    private ImageView mCoverImageView;
+    int moviePosition;
 
     public DetailActivityFragment() {
+
     }
 
     @Override
@@ -37,7 +42,9 @@ public class DetailActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
+
         if (savedInstanceState == null || !savedInstanceState.containsKey(Utils.PARC_MOVIE_TAG)) {
             Intent intent = getActivity().getIntent();
             movie = intent.getParcelableExtra("movie");
@@ -46,6 +53,7 @@ public class DetailActivityFragment extends Fragment {
             movie = savedInstanceState.getParcelable(Utils.PARC_MOVIE_TAG);
             Log.d(TAG, "succes ");
         }
+
         TextView title = (TextView) rootView.findViewById(R.id.title);
         title.setText(movie.getTitre());
         TextView overview = (TextView) rootView.findViewById(R.id.overview);
@@ -55,6 +63,15 @@ public class DetailActivityFragment extends Fragment {
                 .error(R.drawable.posternotfound)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(poster);
+
+        // TODO: 4/10/16 Remplace the coverview by the correspended id
+        moviePosition = getActivity().getIntent().getIntExtra(Utils.EXTRA_MOVIE_POSITION, 0);
+        mCoverImageView = (ImageView) rootView.findViewById(R.id.poster);
+        if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
+            mCoverImageView.setTransitionName(
+                    Utils.SHARED_TRANSITION_NAME + moviePosition);
+        }
+
         return rootView;
     }
 

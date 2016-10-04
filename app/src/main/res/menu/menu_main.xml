@@ -9,10 +9,8 @@
         android:icon="@drawable/ic_subject_white_24dp"
         android:title="@string/action_settings"
         app:showAsAction="ifRoom"
-
         >
         <menu>
-
 
             <item
                 android:id="@+id/toprated_menu_item"

@@ -14,6 +14,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        int moviePosition = getIntent()
+                .getIntExtra("movie_position", 0);
+
+
 //        if (savedInstanceState == null) {
 //            getSupportFragmentManager()
 //                    .beginTransaction()

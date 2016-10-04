@@ -1,5 +1,6 @@
 package com.scoopmovies.thesam.scoopmovies;
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -79,7 +80,7 @@ public class MainActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 //        coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.main_coordinator);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         if (savedInstanceState == null || !savedInstanceState.containsKey(Utils.PARC_MOVIES_TAG)) {
@@ -105,11 +106,23 @@ public class MainActivityFragment extends Fragment {
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
                 Intent selectedMovie = new Intent(getActivity(), DetailActivity.class);
                 selectedMovie.putExtra("movie", movies.get(position));
-                startActivity(selectedMovie);
+                selectedMovie.putExtra("item_selected", position);
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                    selectedMovie.putExtra(Utils.EXTRA_MOVIE_POSITION,position);
+                    ActivityOptions activityOptions = ActivityOptions
+                            .makeSceneTransitionAnimation(getActivity(),
+                                    new android.util.Pair<View, String>(v, Utils.SHARED_TRANSITION_NAME + position));
+                    startActivity(selectedMovie, activityOptions.toBundle());
+                } else {
+                    startActivity(selectedMovie);
+                }
             }
         });
         return rootView;
     }
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
