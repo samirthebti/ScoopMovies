@@ -1,5 +1,8 @@
 package com.scoopmovies.thesam.scoopmovies;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,16 +17,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        int moviePosition = getIntent()
-//                .getIntExtra("movie_position", 0);
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        Editor editor = sharedPref.edit();
+        editor.putString(getString(R.string.sharedpref), "popular");
+        editor.apply();
         if (savedInstanceState == null) {
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.container, new MainActivityFragment())
                     .commit();
         }
-
-
     }
 
     @Override
@@ -39,10 +42,6 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-
-
         return super.onOptionsItemSelected(item);
     }
 }

@@ -27,6 +27,13 @@ public class DetailActivityFragment extends Fragment {
     public static final String TAG = DetailActivityFragment.class.getSimpleName();
     private Movies movie;
     private ImageView mCoverImageView;
+    private TextView mTitle;
+    private TextView mDate;
+    private TextView mOverview;
+    private ImageView mCover;
+    private ImageView mPoster;
+    private TextView mVoteAverrge;
+
     int moviePosition;
 
     public DetailActivityFragment() {
@@ -57,21 +64,25 @@ public class DetailActivityFragment extends Fragment {
             Log.d(TAG, "succes ");
         }
 
-        TextView title = (TextView) rootView.findViewById(R.id.movie_detail_title);
-        title.setText(movie.getTitre());
-        TextView overview = (TextView) rootView.findViewById(R.id.movie_detail_overview);
-        overview.setText(movie.getOverview());
-        ImageView poster = (ImageView) rootView.findViewById(R.id.movie_detail_poster);
-        ImageView cover = (ImageView) rootView.findViewById(R.id.movie_detail_cover);
+        mTitle = (TextView) rootView.findViewById(R.id.movie_detail_title);
+        mTitle.setText(movie.getTitre());
+        mDate = (TextView) rootView.findViewById(R.id.movie_detail_date);
+        mDate.setText(movie.getDate());
+        mVoteAverrge = (TextView) rootView.findViewById(R.id.movie_detail_popular);
+        mVoteAverrge.setText(movie.getVote_average());
+        mOverview = (TextView) rootView.findViewById(R.id.movie_detail_overview);
+        mOverview.setText(movie.getOverview());
+        mPoster = (ImageView) rootView.findViewById(R.id.movie_detail_poster);
+        mCover = (ImageView) rootView.findViewById(R.id.movie_detail_cover);
         Glide.with(getActivity()).load(ApiUtils.POSTER_BASE_URL + movie.getBackdrop_path())
                 .error(R.drawable.posternotfound)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(cover);
+                .into(mCover);
         Glide.with(getActivity()).load(ApiUtils.POSTER_BASE_URL + movie.getPoster())
                 .error(R.drawable.posternotfound)
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(poster);
+                .into(mPoster);
 
 
         return rootView;

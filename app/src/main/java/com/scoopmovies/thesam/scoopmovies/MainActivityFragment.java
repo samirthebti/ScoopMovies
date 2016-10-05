@@ -3,10 +3,11 @@ package com.scoopmovies.thesam.scoopmovies;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -48,14 +49,18 @@ import static com.scoopmovies.thesam.scoopmovies.network.ApiUtils.buildUrl;
 public class MainActivityFragment extends Fragment {
     public static final String LOG_TAG = MainActivityFragment.class.getSimpleName();
     public static final String LOG_MOVIES = "movies";
+    public static final String TOP_RATED = "top_rated";
+    public static final String POPULAR = "popular";
     private List<Movies> movies;
     private RecyclerView mRecyclerView;
     private int desiredColumnWidth;
     private GridAdapter mGridAdapter;
-    private CoordinatorLayout coordinatorLayout;
-    private String mChoix = "popular";
+    private String mChoix;
     private ArrayList<Movies> myMovies = new ArrayList<>();
     private JsonObjectRequest mJsObjRequest;
+    private String mCuurentSortby;
+    private SharedPreferences sharedPref;
+
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -71,18 +76,28 @@ public class MainActivityFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-
         mRecyclerView.clearOnScrollListeners();
         mRecyclerView.clearOnChildAttachStateChangeListeners();
 
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(LOG_TAG, "onResume: ");
+        mCuurentSortby = sharedPref.getString(getString(R.string.sharedpref), POPULAR);
+
+    }
+
+    @Override
     public void onPause() {
         super.onPause();
-
+        Log.d(LOG_TAG, "onPause: ");
         mRecyclerView.clearOnScrollListeners();
         mRecyclerView.clearOnChildAttachStateChangeListeners();
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(getString(R.string.sharedpref), mCuurentSortby);
+        editor.apply();
     }
 
     public MainActivityFragment() {
@@ -91,29 +106,43 @@ public class MainActivityFragment extends Fragment {
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(getContext());
+        if (!sharedPref.contains(getString(R.string.sharedpref))) {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString(getString(R.string.sharedpref), POPULAR);
+            editor.apply();
+        }
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         final View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        mCuurentSortby = sharedPref.getString(getString(R.string.sharedpref), POPULAR);
 //        coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.main_coordinator);
+        Log.d(LOG_TAG, "onCreateView: ");
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         mRecyclerView.setNestedScrollingEnabled(false);
         if (savedInstanceState == null || !savedInstanceState.containsKey(Utils.PARC_MOVIES_TAG)) {
+            mChoix = mCuurentSortby;
             movies = getMovies(getActivity(), mChoix);
-            Log.d(LOG_TAG, "parcel sucess savedinstance null");
         } else if (savedInstanceState != null && savedInstanceState.containsKey(Utils.PARC_MOVIES_TAG)) {
             movies = savedInstanceState.getParcelableArrayList(Utils.PARC_MOVIES_TAG);
-            Log.d(LOG_TAG, "parcel failed " + movies.toString());
         }
         // compute optimal number of columns based on available width
         int gridWidth = Utils.getScreenWidth(getActivity());
         int optimalColumnCount = Math.max(Math.round((1f * gridWidth) / desiredColumnWidth), 1);
         int actualPosterViewWidth = gridWidth / optimalColumnCount;
-
+        //SetUp the recyclerview
         mRecyclerView.setHasFixedSize(true);
         mGridAdapter = new GridAdapter(getActivity(), movies, actualPosterViewWidth);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         mGridAdapter.notifyDataSetChanged();
         mRecyclerView.setAdapter(mGridAdapter);
+
         // on RecyclerView Item Clicked
         ItemClickSupport.addTo(mRecyclerView).setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -121,6 +150,7 @@ public class MainActivityFragment extends Fragment {
                 Intent selectedMovie = new Intent(getActivity(), DetailActivity.class);
                 selectedMovie.putExtra("movie", movies.get(position));
                 selectedMovie.putExtra("item_selected", position);
+                //setup the animation and lanche the intent
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
                     selectedMovie.putExtra(Utils.EXTRA_MOVIE_POSITION, position);
                     ActivityOptions activityOptions = ActivityOptions
@@ -135,21 +165,27 @@ public class MainActivityFragment extends Fragment {
         return rootView;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.toprated_menu_item) {
-            mChoix = "top_rated";
-            movies.clear();
-            movies = getMovies(getActivity(), mChoix);
-            mRecyclerView.getRecycledViewPool().clear();
+            mChoix = TOP_RATED;
+            if (!mCuurentSortby.equals(mChoix)) {
+                movies.clear();
+                movies = getMovies(getActivity(), mChoix);
+                mRecyclerView.getRecycledViewPool().clear();
+                mCuurentSortby = mChoix;
+            }
             Log.d(LOG_TAG, "onOptionsItemSelected: ");
-        } else if (id == R.id.popular_menu_item) {
-            mChoix = "popular";
-            movies.clear();
-            movies = getMovies(getActivity(), mChoix);
-            mRecyclerView.getRecycledViewPool().clear();
+        }
+        if (id == R.id.popular_menu_item) {
+            mChoix = POPULAR;
+            if (!mCuurentSortby.equals(mChoix)) {
+                movies.clear();
+                movies = getMovies(getActivity(), mChoix);
+                mRecyclerView.getRecycledViewPool().clear();
+                mCuurentSortby = mChoix;
+            }
         }
 
         return super.onOptionsItemSelected(item);

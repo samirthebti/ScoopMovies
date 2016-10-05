@@ -16,6 +16,7 @@ public class Utils {
     public static final String PARC_MOVIE_TAG = "movie";
     public static final String SHARED_TRANSITION_NAME = "poster";
     public final static String EXTRA_MOVIE_POSITION = "movie_position";
+    public static final String SORTBY_PREF = "pref";
 
     public static int getScreenWidth(@NonNull Context context) {
         DisplayMetrics displayMetrics = new DisplayMetrics();

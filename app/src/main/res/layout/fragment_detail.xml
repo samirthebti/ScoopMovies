@@ -40,34 +40,8 @@
                 android:src="@drawable/posternotfound"
                 />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/movie_detail_poster"
-                android:layout_toRightOf="@id/movie_detail_poster"
-                android:orientation="vertical"
-                >
-
-                <TextView
-                    android:id="@+id/movie_detail_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/movie_detail_poster"
-                    android:layout_toRightOf="@id/movie_detail_poster"
-                    android:text="Title"
-                    />
-
-                <TextView
-                    android:id="@+id/movie_detail_popular"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/movie_detail_poster"
-                    android:layout_toRightOf="@id/movie_detail_poster"
-                    android:text="Title"
-                    />
-            </LinearLayout>
-
             <android.support.v7.widget.CardView
+                android:id="@+id/card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/movie_detail_poster"
@@ -85,6 +59,40 @@
                     android:layout_below="@id/movie_detail_poster"
                     />
             </android.support.v7.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="37dp"
+                android:layout_marginStart="37dp"
+                android:layout_above="@+id/card"
+                android:layout_toRightOf="@+id/movie_detail_poster"
+                android:layout_toEndOf="@+id/movie_detail_poster"
+                android:layout_marginBottom="72dp"
+                >
+
+                <TextView
+                    android:id="@+id/movie_detail_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/movie_detail_date"
+
+                    />
+
+                <TextView
+                    android:id="@+id/movie_detail_popular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="Title"
+                    />
+            </LinearLayout>
 
         </RelativeLayout>
     </ScrollView>
