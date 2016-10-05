@@ -81,7 +81,6 @@ public class MainActivityFragment extends Fragment {
     public void onResume() {
         super.onResume();
         mCurentSortby = sharedPref.getString(getString(R.string.sharedpref), POPULAR);
-
     }
 
     @Override
