@@ -32,6 +32,9 @@ public class ApiUtils {
     public static final String POSTER = "poster_path";
     public static final String TAG_MOVIE = "results";
     public static final String POSTER_BASE_URL = "http://image.tmdb.org/t/p/w500/";
+    public static final String BACKDROP = "backdrop_path";
+    public static final String VOTE_AVERGE = "vote_average";
+    public static final String RELEASE_DATE = "release_date";
 
     public static String buildUrl(String sortBy) {
         Uri buildedUrl = Uri.parse(BASE_URL)

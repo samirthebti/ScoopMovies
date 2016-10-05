@@ -12,15 +12,45 @@ public class Movies implements android.os.Parcelable {
     private String titre;
     private String overview;
     private String poster;
+    private String backdrop_path;
+    private String vote_average;
+    private String date;
 
-    public Movies(String id, String titre, String overview, String poster) {
+    public Movies(String id, String titre, String overview, String poster, String backdrop_path, String vote_average, String date) {
         this.id = id;
         this.titre = titre;
         this.overview = overview;
         this.poster = poster;
+        this.backdrop_path = backdrop_path;
+        this.vote_average = vote_average;
+        this.date = date;
     }
 
     public Movies() {
+    }
+
+    public String getVote_average() {
+        return vote_average;
+    }
+
+    public void setVote_average(String vote_average) {
+        this.vote_average = vote_average;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getBackdrop_path() {
+        return backdrop_path;
+    }
+
+    public void setBackdrop_path(String backdrop_path) {
+        this.backdrop_path = backdrop_path;
     }
 
     public String getId() {
@@ -58,10 +88,13 @@ public class Movies implements android.os.Parcelable {
     @Override
     public String toString() {
         return "Movies{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", titre='" + titre + '\'' +
                 ", overview='" + overview + '\'' +
                 ", poster='" + poster + '\'' +
+                ", backdrop_path='" + backdrop_path + '\'' +
+                ", vote_average='" + vote_average + '\'' +
+                ", date='" + date + '\'' +
                 '}';
     }
 
@@ -76,6 +109,9 @@ public class Movies implements android.os.Parcelable {
         dest.writeString(this.titre);
         dest.writeString(this.overview);
         dest.writeString(this.poster);
+        dest.writeString(this.backdrop_path);
+        dest.writeString(this.vote_average);
+        dest.writeString(this.date);
     }
 
     protected Movies(Parcel in) {
@@ -83,6 +119,9 @@ public class Movies implements android.os.Parcelable {
         this.titre = in.readString();
         this.overview = in.readString();
         this.poster = in.readString();
+        this.backdrop_path = in.readString();
+        this.vote_average = in.readString();
+        this.date = in.readString();
     }
 
     public static final Creator<Movies> CREATOR = new Creator<Movies>() {

@@ -181,6 +181,9 @@ public class MainActivityFragment extends Fragment {
                                     movie.setOverview(b.getString(ApiUtils.OVERVIEW));
                                     movie.setTitre(b.getString(ApiUtils.TITLE));
                                     movie.setPoster(b.getString(ApiUtils.POSTER));
+                                    movie.setBackdrop_path(b.getString(ApiUtils.BACKDROP));
+                                    movie.setDate(b.getString(ApiUtils.RELEASE_DATE));
+                                    movie.setVote_average(b.getString(ApiUtils.VOTE_AVERGE));
                                     myMovies.add(movie);
 
                                 }

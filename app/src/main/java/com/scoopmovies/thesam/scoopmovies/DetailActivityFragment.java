@@ -63,25 +63,30 @@ public class DetailActivityFragment extends Fragment {
         overview.setText(movie.getOverview());
         ImageView poster = (ImageView) rootView.findViewById(R.id.movie_detail_poster);
         ImageView cover = (ImageView) rootView.findViewById(R.id.movie_detail_cover);
-        Glide.with(getActivity()).load(ApiUtils.POSTER_BASE_URL + movie.getPoster())
+        Glide.with(getActivity()).load(ApiUtils.POSTER_BASE_URL + movie.getBackdrop_path())
                 .error(R.drawable.posternotfound)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(poster);
+                .into(cover);
         Glide.with(getActivity()).load(ApiUtils.POSTER_BASE_URL + movie.getPoster())
                 .error(R.drawable.posternotfound)
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(cover);
+                .into(poster);
 
+
+        return rootView;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         // TODO: 4/10/16 Remplace the coverview by the correspended id
         moviePosition = getActivity().getIntent().getIntExtra(Utils.EXTRA_MOVIE_POSITION, 0);
-        mCoverImageView = (ImageView) rootView.findViewById(R.id.movie_detail_cover);
+        mCoverImageView = (ImageView) view.findViewById(R.id.movie_detail_poster);
         if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
             mCoverImageView.setTransitionName(
                     Utils.SHARED_TRANSITION_NAME + moviePosition);
         }
-
-        return rootView;
     }
 
     @Override
