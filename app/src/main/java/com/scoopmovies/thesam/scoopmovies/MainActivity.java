@@ -16,10 +16,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 //        int moviePosition = getIntent()
 //                .getIntExtra("movie_position", 0);
-        if (savedInstanceState != null) {
+        if (savedInstanceState == null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.fragment, new MainActivityFragment())
+                    .add(R.id.container, new MainActivityFragment())
                     .commit();
         }
 
