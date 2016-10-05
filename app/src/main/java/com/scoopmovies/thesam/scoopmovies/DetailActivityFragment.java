@@ -40,11 +40,14 @@ public class DetailActivityFragment extends Fragment {
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
-
         if (savedInstanceState == null || !savedInstanceState.containsKey(Utils.PARC_MOVIE_TAG)) {
             Intent intent = getActivity().getIntent();
             movie = intent.getParcelableExtra("movie");
@@ -59,14 +62,20 @@ public class DetailActivityFragment extends Fragment {
         TextView overview = (TextView) rootView.findViewById(R.id.movie_detail_overview);
         overview.setText(movie.getOverview());
         ImageView poster = (ImageView) rootView.findViewById(R.id.movie_detail_poster);
+        ImageView cover = (ImageView) rootView.findViewById(R.id.movie_detail_cover);
         Glide.with(getActivity()).load(ApiUtils.POSTER_BASE_URL + movie.getPoster())
                 .error(R.drawable.posternotfound)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(poster);
+        Glide.with(getActivity()).load(ApiUtils.POSTER_BASE_URL + movie.getPoster())
+                .error(R.drawable.posternotfound)
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(cover);
 
         // TODO: 4/10/16 Remplace the coverview by the correspended id
         moviePosition = getActivity().getIntent().getIntExtra(Utils.EXTRA_MOVIE_POSITION, 0);
-        mCoverImageView = (ImageView) rootView.findViewById(R.id.movie_detail_poster);
+        mCoverImageView = (ImageView) rootView.findViewById(R.id.movie_detail_cover);
         if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
             mCoverImageView.setTransitionName(
                     Utils.SHARED_TRANSITION_NAME + moviePosition);

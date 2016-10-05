@@ -19,8 +19,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
+import com.android.volley.Request.Method;
+import com.android.volley.Response.ErrorListener;
+import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.scoopmovies.thesam.scoopmovies.adapter.GridAdapter;
@@ -54,6 +55,7 @@ public class MainActivityFragment extends Fragment {
     private CoordinatorLayout coordinatorLayout;
     private String mChoix = "popular";
     private ArrayList<Movies> myMovies = new ArrayList<>();
+    private JsonObjectRequest mJsObjRequest;
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -70,6 +72,17 @@ public class MainActivityFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
 
+        mRecyclerView.clearOnScrollListeners();
+        mRecyclerView.clearOnChildAttachStateChangeListeners();
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        mRecyclerView.clearOnScrollListeners();
+        mRecyclerView.clearOnChildAttachStateChangeListeners();
     }
 
     public MainActivityFragment() {
@@ -150,8 +163,8 @@ public class MainActivityFragment extends Fragment {
 
     public ArrayList getMovies(final Context context, final String sortBy) {
 
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                (Request.Method.GET, buildUrl(sortBy), null, new Response.Listener<JSONObject>() {
+        mJsObjRequest = new JsonObjectRequest
+                (Method.GET, buildUrl(sortBy), null, new Listener<JSONObject>() {
                     JSONArray movies;
 
                     @Override
@@ -179,7 +192,7 @@ public class MainActivityFragment extends Fragment {
 //                        Toast.makeText(context, myMovies.toString(), Toast.LENGTH_LONG).show();
 
                     }
-                }, new Response.ErrorListener() {
+                }, new ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(context, "Error While Fetching Data", Toast.LENGTH_LONG).show();
@@ -188,7 +201,7 @@ public class MainActivityFragment extends Fragment {
                 });
         // Access the RequestQueue through your singleton class. the context of  fragment is geted
         // by call getActivity() methode
-        VolleySing.getInstance(context).addToRequestQueue(jsObjRequest);
+        VolleySing.getInstance(context).addToRequestQueue(mJsObjRequest);
 
 
         return myMovies;
