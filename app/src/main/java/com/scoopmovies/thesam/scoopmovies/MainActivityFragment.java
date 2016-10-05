@@ -53,12 +53,12 @@ public class MainActivityFragment extends Fragment {
     public static final String POPULAR = "popular";
     private List<Movies> movies;
     private RecyclerView mRecyclerView;
-    private int desiredColumnWidth;
+    private int mDesiredColumnWidth;
     private GridAdapter mGridAdapter;
     private String mChoix;
     private ArrayList<Movies> myMovies = new ArrayList<>();
     private JsonObjectRequest mJsObjRequest;
-    private String mCuurentSortby;
+    private String mCurentSortby;
     private SharedPreferences sharedPref;
 
 
@@ -68,10 +68,6 @@ public class MainActivityFragment extends Fragment {
         outState.putParcelableArrayList(Utils.PARC_MOVIES_TAG, (ArrayList<? extends Parcelable>) movies);
     }
 
-    @Override
-    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-        super.onViewStateRestored(savedInstanceState);
-    }
 
     @Override
     public void onDestroy() {
@@ -84,24 +80,22 @@ public class MainActivityFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.d(LOG_TAG, "onResume: ");
-        mCuurentSortby = sharedPref.getString(getString(R.string.sharedpref), POPULAR);
+        mCurentSortby = sharedPref.getString(getString(R.string.sharedpref), POPULAR);
 
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        Log.d(LOG_TAG, "onPause: ");
         mRecyclerView.clearOnScrollListeners();
         mRecyclerView.clearOnChildAttachStateChangeListeners();
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(getString(R.string.sharedpref), mCuurentSortby);
+        editor.putString(getString(R.string.sharedpref), mCurentSortby);
         editor.apply();
     }
 
     public MainActivityFragment() {
-        desiredColumnWidth = R.dimen.desired_column_width;
+        mDesiredColumnWidth = R.dimen.desired_column_width;
         setHasOptionsMenu(true);
     }
 
@@ -121,20 +115,20 @@ public class MainActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         final View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        mCuurentSortby = sharedPref.getString(getString(R.string.sharedpref), POPULAR);
+        mCurentSortby = sharedPref.getString(getString(R.string.sharedpref), POPULAR);
 //        coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.main_coordinator);
-        Log.d(LOG_TAG, "onCreateView: ");
+
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         mRecyclerView.setNestedScrollingEnabled(false);
         if (savedInstanceState == null || !savedInstanceState.containsKey(Utils.PARC_MOVIES_TAG)) {
-            mChoix = mCuurentSortby;
+            mChoix = mCurentSortby;
             movies = getMovies(getActivity(), mChoix);
         } else if (savedInstanceState != null && savedInstanceState.containsKey(Utils.PARC_MOVIES_TAG)) {
             movies = savedInstanceState.getParcelableArrayList(Utils.PARC_MOVIES_TAG);
         }
         // compute optimal number of columns based on available width
         int gridWidth = Utils.getScreenWidth(getActivity());
-        int optimalColumnCount = Math.max(Math.round((1f * gridWidth) / desiredColumnWidth), 1);
+        int optimalColumnCount = Math.max(Math.round((1f * gridWidth) / mDesiredColumnWidth), 1);
         int actualPosterViewWidth = gridWidth / optimalColumnCount;
         //SetUp the recyclerview
         mRecyclerView.setHasFixedSize(true);
@@ -148,8 +142,8 @@ public class MainActivityFragment extends Fragment {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
                 Intent selectedMovie = new Intent(getActivity(), DetailActivity.class);
-                selectedMovie.putExtra("movie", movies.get(position));
-                selectedMovie.putExtra("item_selected", position);
+                selectedMovie.putExtra(Utils.EXTRA_MOVIE_INTENT, movies.get(position));
+                selectedMovie.putExtra(Utils.EXTRA_MOVIE_POSITION, position);
                 //setup the animation and lanche the intent
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
                     selectedMovie.putExtra(Utils.EXTRA_MOVIE_POSITION, position);
@@ -170,21 +164,21 @@ public class MainActivityFragment extends Fragment {
         int id = item.getItemId();
         if (id == R.id.toprated_menu_item) {
             mChoix = TOP_RATED;
-            if (!mCuurentSortby.equals(mChoix)) {
+            if (!mCurentSortby.equals(mChoix)) {
                 movies.clear();
                 movies = getMovies(getActivity(), mChoix);
                 mRecyclerView.getRecycledViewPool().clear();
-                mCuurentSortby = mChoix;
+                mCurentSortby = mChoix;
             }
             Log.d(LOG_TAG, "onOptionsItemSelected: ");
         }
         if (id == R.id.popular_menu_item) {
             mChoix = POPULAR;
-            if (!mCuurentSortby.equals(mChoix)) {
+            if (!mCurentSortby.equals(mChoix)) {
                 movies.clear();
                 movies = getMovies(getActivity(), mChoix);
                 mRecyclerView.getRecycledViewPool().clear();
-                mCuurentSortby = mChoix;
+                mCurentSortby = mChoix;
             }
         }
 

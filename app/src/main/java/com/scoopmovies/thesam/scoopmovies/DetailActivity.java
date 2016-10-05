@@ -6,7 +6,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.scoopmovies.thesam.scoopmovies.model.Movies;
+import com.scoopmovies.thesam.scoopmovies.utils.Utils;
+
 public class DetailActivity extends AppCompatActivity {
+    private Movies mMovie;
 
 
     @Override
@@ -19,6 +23,10 @@ public class DetailActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             DetailActivityFragment detailActivityFragment = new DetailActivityFragment();
 //            detailActivityFragment.setArguments(getIntent().getExtras());
+            Bundle bundle = new Bundle();
+            bundle = getIntent().getExtras();
+            mMovie = bundle.getParcelable(Utils.EXTRA_MOVIE_INTENT);
+            getSupportActionBar().setTitle(mMovie.getTitre());
             getFragmentManager().beginTransaction()
                     .add(R.id.details_container, detailActivityFragment)
                     .commit();

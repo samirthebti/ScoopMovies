@@ -38,16 +38,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             >
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/addtofavorite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/fab_margin"
-                android:baselineAlignBottom="true"
-                android:background="@color/accent"
-                android:src="@drawable/ic_grade_white_24dp"
-                />
+
         </FrameLayout>
+
+
     </LinearLayout>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/addtofavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:background="@color/accent"
+        android:src="@drawable/ic_grade_white_24dp"
+        />
 </android.support.design.widget.CoordinatorLayout>

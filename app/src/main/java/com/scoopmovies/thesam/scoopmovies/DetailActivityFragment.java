@@ -5,10 +5,10 @@ import android.content.Intent;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -25,7 +25,7 @@ import com.scoopmovies.thesam.scoopmovies.utils.Utils;
  */
 public class DetailActivityFragment extends Fragment {
     public static final String TAG = DetailActivityFragment.class.getSimpleName();
-    private Movies movie;
+    private Movies mMovie;
     private ImageView mCoverImageView;
     private TextView mTitle;
     private TextView mDate;
@@ -37,13 +37,14 @@ public class DetailActivityFragment extends Fragment {
     int moviePosition;
 
     public DetailActivityFragment() {
+        setHasOptionsMenu(true);
 
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelable(Utils.PARC_MOVIE_TAG, movie);
+        outState.putParcelable(Utils.PARC_MOVIE_TAG, mMovie);
     }
 
     @Override
@@ -57,28 +58,31 @@ public class DetailActivityFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
         if (savedInstanceState == null || !savedInstanceState.containsKey(Utils.PARC_MOVIE_TAG)) {
             Intent intent = getActivity().getIntent();
-            movie = intent.getParcelableExtra("movie");
-            Log.d(TAG, "FAILES");
+            mMovie = intent.getParcelableExtra(Utils.EXTRA_MOVIE_INTENT);
         } else if (savedInstanceState != null && savedInstanceState.containsKey(Utils.PARC_MOVIE_TAG)) {
-            movie = savedInstanceState.getParcelable(Utils.PARC_MOVIE_TAG);
-            Log.d(TAG, "succes ");
+            mMovie = savedInstanceState.getParcelable(Utils.PARC_MOVIE_TAG);
+
         }
 
         mTitle = (TextView) rootView.findViewById(R.id.movie_detail_title);
-        mTitle.setText(movie.getTitre());
+        mTitle.setText(mMovie.getTitre());
+
         mDate = (TextView) rootView.findViewById(R.id.movie_detail_date);
-        mDate.setText(movie.getDate());
+        mDate.setText(mMovie.getDate());
+
         mVoteAverrge = (TextView) rootView.findViewById(R.id.movie_detail_popular);
-        mVoteAverrge.setText(movie.getVote_average());
+        mVoteAverrge.setText(mMovie.getVote_average());
+
         mOverview = (TextView) rootView.findViewById(R.id.movie_detail_overview);
-        mOverview.setText(movie.getOverview());
+        mOverview.setText(mMovie.getOverview());
+
         mPoster = (ImageView) rootView.findViewById(R.id.movie_detail_poster);
         mCover = (ImageView) rootView.findViewById(R.id.movie_detail_cover);
-        Glide.with(getActivity()).load(ApiUtils.POSTER_BASE_URL + movie.getBackdrop_path())
+        Glide.with(getActivity()).load(ApiUtils.POSTER_BASE_URL + mMovie.getBackdrop_path())
                 .error(R.drawable.posternotfound)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(mCover);
-        Glide.with(getActivity()).load(ApiUtils.POSTER_BASE_URL + movie.getPoster())
+        Glide.with(getActivity()).load(ApiUtils.POSTER_BASE_URL + mMovie.getPoster())
                 .error(R.drawable.posternotfound)
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -91,7 +95,6 @@ public class DetailActivityFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        // TODO: 4/10/16 Remplace the coverview by the correspended id
         moviePosition = getActivity().getIntent().getIntExtra(Utils.EXTRA_MOVIE_POSITION, 0);
         mCoverImageView = (ImageView) view.findViewById(R.id.movie_detail_poster);
         if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
@@ -100,8 +103,25 @@ public class DetailActivityFragment extends Fragment {
         }
     }
 
+    public void actionShare(String content) {
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, content);
+        startActivity(shareIntent);
+    }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_detail, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.share) {
+            actionShare(mMovie.toString());
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -1,6 +1,7 @@
 package com.scoopmovies.thesam.scoopmovies.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
@@ -16,6 +17,7 @@ public class Utils {
     public static final String PARC_MOVIE_TAG = "movie";
     public static final String SHARED_TRANSITION_NAME = "poster";
     public final static String EXTRA_MOVIE_POSITION = "movie_position";
+    public static final String EXTRA_MOVIE_INTENT = "mMovie";
     public static final String SORTBY_PREF = "pref";
 
     public static int getScreenWidth(@NonNull Context context) {
@@ -24,4 +26,6 @@ public class Utils {
         wm.getDefaultDisplay().getMetrics(displayMetrics);
         return displayMetrics.widthPixels;
     }
+
+
 }
