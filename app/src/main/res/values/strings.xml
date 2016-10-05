@@ -4,6 +4,7 @@
     <string name="title_activity_detail">DetailActivity</string>
     <string name="share">Share</string>
     <string name="sharedpref">stortedBy</string>
+    <string name="positionpref">position</string>
     <string name="overview_text">Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum</string>
     <string name="overge_total_score">/10</string>
 </resources>

@@ -40,6 +40,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
+
 
 import static com.scoopmovies.thesam.scoopmovies.network.ApiUtils.buildUrl;
 
@@ -60,6 +62,7 @@ public class MainActivityFragment extends Fragment {
     private JsonObjectRequest mJsObjRequest;
     private String mCurentSortby;
     private SharedPreferences sharedPref;
+    private int mCurrentPosition;
 
 
     @Override
@@ -81,21 +84,35 @@ public class MainActivityFragment extends Fragment {
     public void onResume() {
         super.onResume();
         mCurentSortby = sharedPref.getString(getString(R.string.sharedpref), POPULAR);
+        mCurrentPosition = sharedPref.getInt(getString(R.string.positionpref), 1);
+
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        mRecyclerView.clearOnScrollListeners();
-        mRecyclerView.clearOnChildAttachStateChangeListeners();
+
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(getString(R.string.sharedpref), mCurentSortby);
         editor.apply();
+
+        SharedPreferences.Editor editor1 = sharedPref.edit();
+        editor1.putInt(getString(R.string.positionpref), mCurrentPosition);
+        editor1.apply();
+        mRecyclerView.clearOnScrollListeners();
+        mRecyclerView.clearOnChildAttachStateChangeListeners();
     }
 
     public MainActivityFragment() {
         mDesiredColumnWidth = R.dimen.desired_column_width;
         setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mRecyclerView.smoothScrollToPosition(mCurrentPosition);
+
     }
 
     @Override
@@ -107,6 +124,12 @@ public class MainActivityFragment extends Fragment {
             editor.putString(getString(R.string.sharedpref), POPULAR);
             editor.apply();
         }
+        if (!sharedPref.contains(getString(R.string.positionpref))) {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putInt(getString(R.string.positionpref), 1);
+            editor.apply();
+        }
+
     }
 
     @Override
@@ -115,8 +138,7 @@ public class MainActivityFragment extends Fragment {
 
         final View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         mCurentSortby = sharedPref.getString(getString(R.string.sharedpref), POPULAR);
-//        coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.main_coordinator);
-
+        mCurrentPosition = sharedPref.getInt(getString(R.string.positionpref), 1);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         mRecyclerView.setNestedScrollingEnabled(false);
         if (savedInstanceState == null || !savedInstanceState.containsKey(Utils.PARC_MOVIES_TAG)) {
@@ -134,7 +156,7 @@ public class MainActivityFragment extends Fragment {
         mGridAdapter = new GridAdapter(getActivity(), movies, actualPosterViewWidth);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         mGridAdapter.notifyDataSetChanged();
-        mRecyclerView.setAdapter(mGridAdapter);
+        mRecyclerView.setAdapter(new SlideInBottomAnimationAdapter(mGridAdapter));
 
         // on RecyclerView Item Clicked
         ItemClickSupport.addTo(mRecyclerView).setOnItemClickListener(new OnItemClickListener() {
@@ -143,6 +165,7 @@ public class MainActivityFragment extends Fragment {
                 Intent selectedMovie = new Intent(getActivity(), DetailActivity.class);
                 selectedMovie.putExtra(Utils.EXTRA_MOVIE_INTENT, movies.get(position));
                 selectedMovie.putExtra(Utils.EXTRA_MOVIE_POSITION, position);
+                mCurrentPosition = position;
                 //setup the animation and lanche the intent
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
                     selectedMovie.putExtra(Utils.EXTRA_MOVIE_POSITION, position);

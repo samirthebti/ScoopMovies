@@ -75,6 +75,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/jp.wasabeef/recyclerview-animators/2.2.4/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="ee2cd959699a02bcfa22668f9235a5c1ca256fab">
+        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/jp.wasabeef-recyclerview-animators-2.2.4_5abf8bf4e5e9f5c395c84f2ce8bbf65b73d8417c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/com.android.support/design/24.2.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -88,7 +97,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="abc914f1366ae9ad7ec83cc5eb778114e077d71a">
+        sha1="76ac0230a8fbf95e8e68fa35ed9a67853a142875">
         <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_617d94231233511bddbf8199294be27db8a41d53/classes.dex" />
     </item>
     <item
@@ -153,15 +162,6 @@
         revision="24.0.2"
         sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
         <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-24.2.1_922f0a78a82082535149e1c0b15022089c8d8f2c/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/exploded-aar/jp.wasabeef/recyclerview-animators/2.2.3/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="8e325e9ba5c23d635d0cfaa76c349fca83101f8a">
-        <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/jp.wasabeef-recyclerview-animators-2.2.3_1316bc6c9945839fc65ec047f4b56d3f22fd3c52/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -232,7 +232,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="38e238bda7a5e09df090f89629f9b5f7a911876f">
+        sha1="d85d4abf893948978a680a74bdeda3ffa9699778">
         <dex dex="/home/thesam/Desktop/Udacity Android Nanodegree/P1-PopularMovies/ScoopMovies/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_70efd7b8787ef47f377d5a02976ea9d01d29f278/classes.dex" />
     </item>
     <item
