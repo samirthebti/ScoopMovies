@@ -81,6 +81,7 @@ public class DetailActivityFragment extends Fragment {
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(mPoster);
+        ApiUtils.getReview(getContext(), mMovie.getId());
         return rootView;
     }
 

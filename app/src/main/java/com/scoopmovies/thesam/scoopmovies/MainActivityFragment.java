@@ -237,7 +237,7 @@ public class MainActivityFragment extends Fragment {
                             JSONObject jsonObj = null;
                             try {
                                 jsonObj = new JSONObject(response.toString());
-                                movies = jsonObj.getJSONArray(ApiUtils.TAG_MOVIE);
+                                movies = jsonObj.getJSONArray(ApiUtils.TAG_RESULTS);
                                 for (int i = 0; i < movies.length(); i++) {
                                     Movies movie = new Movies();
                                     JSONObject b = (JSONObject) movies.get(i);
@@ -269,6 +269,8 @@ public class MainActivityFragment extends Fragment {
         // Access the RequestQueue through your singleton class. the context of  fragment is geted
         // by call getActivity() methode
         VolleySing.getInstance(context).addToRequestQueue(mJsObjRequest);
+
+
         return myMovies;
     }
 }

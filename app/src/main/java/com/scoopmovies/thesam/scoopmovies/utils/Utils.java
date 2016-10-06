@@ -25,7 +25,4 @@ public class Utils {
         wm.getDefaultDisplay().getMetrics(displayMetrics);
         return displayMetrics.widthPixels;
     }
-
-
-
 }
