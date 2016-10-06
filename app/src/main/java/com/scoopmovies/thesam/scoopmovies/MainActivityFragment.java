@@ -99,8 +99,7 @@ public class MainActivityFragment extends Fragment {
         SharedPreferences.Editor editor1 = sharedPref.edit();
         editor1.putInt(getString(R.string.positionpref), mCurrentPosition);
         editor1.apply();
-        mRecyclerView.clearOnScrollListeners();
-        mRecyclerView.clearOnChildAttachStateChangeListeners();
+
     }
 
     public MainActivityFragment() {
