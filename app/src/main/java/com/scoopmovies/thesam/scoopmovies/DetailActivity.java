@@ -11,7 +11,16 @@ import com.scoopmovies.thesam.scoopmovies.utils.Utils;
 
 public class DetailActivity extends AppCompatActivity {
     private Movies mMovie;
+    private Bundle bundle;
 
+    // on restore the instance of this activity wew will ensure the title in toolbar is loaded correctly
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        bundle = getIntent().getExtras();
+        mMovie = bundle.getParcelable(Utils.EXTRA_MOVIE_INTENT);
+        getSupportActionBar().setTitle(mMovie.getTitre());
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +32,7 @@ public class DetailActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             DetailActivityFragment detailActivityFragment = new DetailActivityFragment();
 //            detailActivityFragment.setArguments(getIntent().getExtras());
-            Bundle bundle = new Bundle();
+
             bundle = getIntent().getExtras();
             mMovie = bundle.getParcelable(Utils.EXTRA_MOVIE_INTENT);
             getSupportActionBar().setTitle(mMovie.getTitre());

@@ -11,4 +11,5 @@
     <dimen name="poster_left_margin">40dp</dimen>
     <dimen name="poster_margin_top">170dp</dimen>
     <dimen name="poster_elevation">2dp</dimen>
+    <dimen name="detail_layout_margin">8dp</dimen>
 </resources>
