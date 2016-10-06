@@ -1,37 +1,50 @@
-# Built application files
-/*/build/
+#Android generated
+bin
+gen
+lint.xml
+lint
 
-# Crashlytics configuations
-com_crashlytics_export_strings.xml
+#Eclipse
+.project
+.classpath
+.settings
+.checkstyle
 
-# Local configuration file (sdk path, etc)
-local.properties
-
-# Gradle generated files
-.gradle/
-
-# Signing files
-.signing/
-
-# User-specific configurations
-.idea/libraries/
-.idea/workspace.xml
-.idea/tasks.xml
-.idea/.name
-.idea/compiler.xml
-.idea/copyright/profiles_settings.xml
-.idea/encodings.xml
-.idea/misc.xml
-.idea/modules.xml
-.idea/scopes/scope_settings.xml
-.idea/vcs.xml
+#IntelliJ IDEA
+.idea
 *.iml
+*.ipr
+*.iws
+classes
+gen-external-apklibs
 
-# OS-specific files
+#gradle
+.gradle
+local.properties
+build/
+
+#vi
+*.swp
+
+#other editors
+*.ba
+#Maven
+target
+release.properties
+pom.xml.*
+
+#Ant
+build.xml
+ant.properties
+local.properties
+proguard.cfg
+proguard-project.txt
+
+#Other
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
+tmp
+*.tgz
+*.lock
+*.lck
+com_crashlytics_export_strings.xml
