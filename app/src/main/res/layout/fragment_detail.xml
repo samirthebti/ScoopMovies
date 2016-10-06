@@ -8,7 +8,7 @@
     android:fitsSystemWindows="false"
     >
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:id="@+id/activity_detail_scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -120,5 +120,5 @@
             </LinearLayout>
 
         </RelativeLayout>
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 </FrameLayout>
