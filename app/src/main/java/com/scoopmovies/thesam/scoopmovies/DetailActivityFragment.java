@@ -1,10 +1,11 @@
 package com.scoopmovies.thesam.scoopmovies;
 
-import android.app.Fragment;
+
 import android.content.Intent;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -57,7 +58,6 @@ public class DetailActivityFragment extends Fragment {
             mMovie = savedInstanceState.getParcelable(Utils.PARC_MOVIE_TAG);
 
         }
-
         mTitle = (TextView) rootView.findViewById(R.id.movie_detail_title);
         mTitle.setText(mMovie.getTitre());
 

@@ -12,14 +12,23 @@ import com.scoopmovies.thesam.scoopmovies.utils.Utils;
 public class DetailActivity extends AppCompatActivity {
     private Movies mMovie;
     private Bundle bundle;
+    private Bundle bundle1;
+
+    public static final String DETAIL_FRAGMENT_TAG = "DTTAG";
 
     // on restore the instance of this activity wew will ensure the title in toolbar is loaded correctly
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         bundle = getIntent().getExtras();
+        bundle1 = new Bundle();
+
         mMovie = bundle.getParcelable(Utils.EXTRA_MOVIE_INTENT);
-        getSupportActionBar().setTitle(mMovie.getTitre());
+        try {
+            getSupportActionBar().setTitle(mMovie.getTitre());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -32,12 +41,11 @@ public class DetailActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             DetailActivityFragment detailActivityFragment = new DetailActivityFragment();
 //            detailActivityFragment.setArguments(getIntent().getExtras());
-
             bundle = getIntent().getExtras();
             mMovie = bundle.getParcelable(Utils.EXTRA_MOVIE_INTENT);
             getSupportActionBar().setTitle(mMovie.getTitre());
-            getFragmentManager().beginTransaction()
-                    .add(R.id.details_container, detailActivityFragment)
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.details_container, detailActivityFragment, DETAIL_FRAGMENT_TAG)
                     .commit();
         }
     }

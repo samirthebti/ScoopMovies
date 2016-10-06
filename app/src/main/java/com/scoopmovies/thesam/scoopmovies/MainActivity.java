@@ -3,6 +3,7 @@ package com.scoopmovies.thesam.scoopmovies;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -11,21 +12,35 @@ import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String TAG = MainActivity.class.getSimpleName();
+    private boolean mTwoPanel;
+    public static final String DETAILS_FRAGMENT_TAG = "DFTAG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Fabric.with(this, new Crashlytics());
-        if (savedInstanceState == null) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .add(R.id.container, new MainActivityFragment())
-                    .commit();
+        if (findViewById(R.id.details_container) != null) {
+            if (savedInstanceState == null) {
+                mTwoPanel = true;
+                Log.d(TAG, "onCreate: ");
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.details_container, new DetailActivityFragment(), DETAILS_FRAGMENT_TAG)
+                        .commit();
+            }
+        } else {
+            mTwoPanel = false;
         }
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.container, new MainActivityFragment())
+                .commit();
+
+        Fabric.with(this, new Crashlytics());
+
     }
 
     @Override

@@ -142,7 +142,11 @@ public class MainActivityFragment extends Fragment {
         mRecyclerView.setNestedScrollingEnabled(false);
         if (savedInstanceState == null || !savedInstanceState.containsKey(Utils.PARC_MOVIES_TAG)) {
             mChoix = mCurentSortby;
-            movies = getMovies(getActivity(), mChoix);
+            try {
+                movies = getMovies(getActivity(), mChoix);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else if (savedInstanceState != null && savedInstanceState.containsKey(Utils.PARC_MOVIES_TAG)) {
             movies = savedInstanceState.getParcelableArrayList(Utils.PARC_MOVIES_TAG);
         }
@@ -187,7 +191,12 @@ public class MainActivityFragment extends Fragment {
             mChoix = TOP_RATED;
             if (!mCurentSortby.equals(mChoix)) {
                 movies.clear();
-                movies = getMovies(getActivity(), mChoix);
+                try {
+                    movies = getMovies(getActivity(), mChoix);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
                 mRecyclerView.getRecycledViewPool().clear();
                 mCurentSortby = mChoix;
             }
@@ -197,7 +206,11 @@ public class MainActivityFragment extends Fragment {
             mChoix = POPULAR;
             if (!mCurentSortby.equals(mChoix)) {
                 movies.clear();
-                movies = getMovies(getActivity(), mChoix);
+                try {
+                    movies = getMovies(getActivity(), mChoix);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 mRecyclerView.getRecycledViewPool().clear();
                 mCurentSortby = mChoix;
             }
@@ -256,8 +269,6 @@ public class MainActivityFragment extends Fragment {
         // Access the RequestQueue through your singleton class. the context of  fragment is geted
         // by call getActivity() methode
         VolleySing.getInstance(context).addToRequestQueue(mJsObjRequest);
-
-
         return myMovies;
     }
 }
