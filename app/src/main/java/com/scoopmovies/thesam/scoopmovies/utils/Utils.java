@@ -1,7 +1,6 @@
 package com.scoopmovies.thesam.scoopmovies.utils;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
@@ -26,6 +25,7 @@ public class Utils {
         wm.getDefaultDisplay().getMetrics(displayMetrics);
         return displayMetrics.widthPixels;
     }
+
 
 
 }
