@@ -43,7 +43,7 @@ public class Utils {
      */
     public static String getThumbnailUrl(@NonNull Video video) {
         if (SITE_YOUTUBE.equals(video.getSite())) {
-            return String.format("http://img.youtube.com/vi/" + video.getKey() + "/0.jpg");
+            return String.format("http://img.youtube.com/vi/%1$s/0.jpg", video.getKey());
         } else {
             throw new UnsupportedOperationException("Only YouTube is supported!");
         }

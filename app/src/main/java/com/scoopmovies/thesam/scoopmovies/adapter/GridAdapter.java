@@ -55,7 +55,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.movie_view, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_view, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
 
         return viewHolder;

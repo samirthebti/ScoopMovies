@@ -150,8 +150,10 @@ public class DetailActivityFragment extends Fragment {
 
         mReviewRecycleView.setAdapter(reviewAdapter);
         mVideoRecycleView.setAdapter(videoAdapter);
+
         mReviewRecycleView.setHasFixedSize(true);
         mVideoRecycleView.setHasFixedSize(true);
+
         reviewAdapter.notifyDataSetChanged();
         videoAdapter.notifyDataSetChanged();
 
@@ -256,9 +258,10 @@ public class DetailActivityFragment extends Fragment {
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
+                            videoAdapter.notifyDataSetChanged();
                         }
                         try {
-                            videoAdapter.notifyDataSetChanged();
+
                         } catch (Exception e) {
                             e.printStackTrace();
                             Log.d(TAG, "onResponse: " + e);

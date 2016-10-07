@@ -2,12 +2,14 @@ package com.scoopmovies.thesam.scoopmovies.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.scoopmovies.thesam.scoopmovies.R;
 import com.scoopmovies.thesam.scoopmovies.adapter.VideosAdapter.VideoHolder;
 import com.scoopmovies.thesam.scoopmovies.model.Video;
@@ -21,6 +23,7 @@ import java.util.ArrayList;
  */
 
 public class VideosAdapter extends RecyclerView.Adapter<VideoHolder> {
+    public static final String TAG = VideosAdapter.class.getSimpleName();
     private Context mContext;
     private ArrayList<Video> mVideos;
 
@@ -39,12 +42,15 @@ public class VideosAdapter extends RecyclerView.Adapter<VideoHolder> {
 
     @Override
     public void onBindViewHolder(VideoHolder holder, int position) {
-        Glide.with(mContext).load(Utils.getThumbnailUrl(mVideos.get(position)))
+        Video video = mVideos.get(position);
+        Glide.with(holder.videoImageView.getContext()).load(Utils.getThumbnailUrl(video))
                 .override(R.dimen.video_width, R.dimen.video_height)
-                .centerCrop()
-                .crossFade()
-                .error(R.drawable.posternotfound)
+                .fitCenter()
+//                .error(R.drawable.posternotfound)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(holder.videoImageView);
+
+        Log.d(TAG, "onBindViewHolder: " + Utils.getThumbnailUrl(video));
     }
 
     @Override
@@ -53,11 +59,12 @@ public class VideosAdapter extends RecyclerView.Adapter<VideoHolder> {
     }
 
     public class VideoHolder extends RecyclerView.ViewHolder {
-        private ImageView videoImageView;
+        public ImageView videoImageView;
 
         public VideoHolder(View itemView) {
             super(itemView);
             videoImageView = (ImageView) itemView.findViewById(R.id.videoimageview);
         }
+
     }
 }
