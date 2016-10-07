@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -61,6 +62,7 @@ public class DetailActivityFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private ReviewAdapter reviewAdapter;
     private ArrayList<Review> mReviews;
+    private ArrayList<Review> mVideos;
 
     public DetailActivityFragment() {
         setHasOptionsMenu(true);
@@ -70,6 +72,8 @@ public class DetailActivityFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable(Utils.PARC_MOVIE_TAG, mMovie);
+        outState.putParcelableArrayList(Utils.PARC_REVIEWS_TAG, (ArrayList<? extends Parcelable>) mReviews);
+        outState.putParcelableArrayList(Utils.PARC_VIDEOS_TAG, (ArrayList<? extends Parcelable>) mVideos);
     }
 
 
@@ -81,15 +85,17 @@ public class DetailActivityFragment extends Fragment {
         if (savedInstanceState == null || !savedInstanceState.containsKey(Utils.PARC_MOVIE_TAG)) {
             Intent intent = getActivity().getIntent();
             mMovie = intent.getParcelableExtra(Utils.EXTRA_MOVIE_INTENT);
+            mReviews = getReview(getActivity(), mMovie.getId());
+
         } else if (savedInstanceState != null && savedInstanceState.containsKey(Utils.PARC_MOVIE_TAG)) {
             mMovie = savedInstanceState.getParcelable(Utils.PARC_MOVIE_TAG);
+            mReviews = savedInstanceState.getParcelableArrayList(Utils.PARC_REVIEWS_TAG);
+            mVideos = savedInstanceState.getParcelableArrayList(Utils.PARC_VIDEOS_TAG);
         }
         //Review Recycler settings
         mReviewRecycleView = (RecyclerView) rootView.findViewById(R.id.reviews);
-        mReviews = getReview(getActivity(), mMovie.getId());
         reviewAdapter = new ReviewAdapter(getActivity(), mReviews);
         mReviewRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        reviewAdapter.notifyDataSetChanged();
         mReviewRecycleView.setAdapter(reviewAdapter);
         reviewAdapter.notifyDataSetChanged();
         Log.d(TAG, "onCreateView: " + mReviews.toString());
