@@ -8,6 +8,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.scoopmovies.thesam.scoopmovies.adapter.ReviewAdapter;
 import com.scoopmovies.thesam.scoopmovies.model.Review;
 
 import org.json.JSONArray;
@@ -76,48 +77,5 @@ public class ApiUtils {
         return buildReviewUrl.toString();
     }
 
-    public static ArrayList getReview(final Context context, final String id) {
-        final ArrayList<Review> mReview = new ArrayList<>();
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                (Request.Method.GET, buildReviwUrl(id), null, new Response.Listener<JSONObject>() {
-                    JSONArray movies;
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        if (response != null) {
-                            JSONObject jsonObj = null;
-                            try {
-                                jsonObj = new JSONObject(response.toString());
-                                movies = jsonObj.getJSONArray(TAG_RESULTS);
-                                for (int i = 0; i < movies.length(); i++) {
-                                    Review movie = new Review();
-                                    JSONObject b = (JSONObject) movies.get(i);
-                                    movie.setId(b.getString(ID));
-                                    movie.setAuthor(b.getString(AUTHOR));
-                                    movie.setContent(b.getString(CONTENT));
-                                    mReview.add(movie);
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        Toast.makeText(context, mReview.toString(), Toast.LENGTH_LONG).show();
-
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(context, "Error While Fetching Data", Toast.LENGTH_LONG).show();
-                        Toast.makeText(context, buildReviwUrl(id), Toast.LENGTH_LONG).show();
-
-                    }
-                });
-        // Access the RequestQueue through your singleton class. the context of  fragment is geted
-        // by call getActivity() methode
-        VolleySing.getInstance(context).addToRequestQueue(jsObjRequest);
-
-
-        return mReview;
-    }
 
 }

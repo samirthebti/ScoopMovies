@@ -156,7 +156,7 @@ public class MainActivityFragment extends Fragment {
         int actualPosterViewWidth = gridWidth / optimalColumnCount;
         //SetUp the recyclerview
         mRecyclerView.setHasFixedSize(true);
-        mGridAdapter = new GridAdapter(getActivity(), movies, actualPosterViewWidth);
+        mGridAdapter = new GridAdapter(getActivity().getApplicationContext(), movies, actualPosterViewWidth);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         mGridAdapter.notifyDataSetChanged();
         mRecyclerView.setAdapter(new SlideInBottomAnimationAdapter(mGridAdapter));

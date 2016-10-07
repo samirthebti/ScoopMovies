@@ -29,6 +29,7 @@ import static com.scoopmovies.thesam.scoopmovies.network.ApiUtils.buildUrl;
 public class FetchData implements INetworkCallBack {
     private ArrayList<Movies> myMovies;
     private JsonObjectRequest mJsObjRequest;
+
     @Override
     public ArrayList<Movies> onPostExecute(final Context context, String s) throws Exception {
         mJsObjRequest = new JsonObjectRequest

@@ -44,10 +44,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/movie_detail_poster"
-                android:layout_toEndOf="@id/movie_detail_poster"
-                android:layout_toRightOf="@id/movie_detail_poster"
+                android:layout_margin="@dimen/general_padding"
                 android:text="Overview : "
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textColor="@color/accent"
                 tools:targetApi="lollipop"
                 />
 
@@ -68,14 +68,69 @@
                 tools:clickable="true"
                 >
 
-
                 <TextView
                     android:id="@+id/movie_detail_overview"
+                    xmlns:tools="http://schemas.android.com/tools"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/overview_text"
                     />
             </android.support.v7.widget.CardView>
+
+            <TextView
+                android:id="@+id/trailler_textView"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card"
+                android:padding="@dimen/general_padding"
+                android:text="@string/traillers"
+                android:textColor="@color/accent"
+                android:textSize="18sp"
+                android:visibility="visible"
+                />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/trailler"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/trailler_textView"
+                android:layout_margin="@dimen/general_padding"
+                android:background="?android:selectableItemBackground"
+                android:foreground="?android:attr/selectableItemBackground"
+                tools:clickable="true"
+                tools:focusable="true"
+                />
+
+
+            <TextView
+                android:id="@+id/review_textView"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/trailler"
+                android:padding="@dimen/general_padding"
+                android:text="@string/reviews"
+                android:textColor="@color/accent"
+                android:textSize="18sp"
+                android:visibility="visible"
+                />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/reviews"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/review_textView"
+                android:layout_margin="@dimen/general_padding"
+                android:background="?android:selectableItemBackground"
+                android:foreground="?android:attr/selectableItemBackground"
+                tools:clickable="true"
+                tools:focusable="true"
+                />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -95,6 +150,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                    android:textColor="@color/accent"
+                    tools:targetApi="LOLLIPOP"
                     />
 
 
@@ -115,6 +172,8 @@
                         android:id="@+id/movie_detail_popular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                        android:textColor="@color/accent"
 
                         />
 
@@ -123,6 +182,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/overge_total_score"
                         android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                        tools:targetApi="LOLLIPOP"
+
                         />
                 </LinearLayout>
             </LinearLayout>

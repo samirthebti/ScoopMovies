@@ -12,4 +12,7 @@
     <dimen name="poster_margin_top">170dp</dimen>
     <dimen name="poster_elevation">2dp</dimen>
     <dimen name="detail_layout_margin">8dp</dimen>
+    <dimen name="categorie_dimen">14sp</dimen>
+    <dimen name="video_height">180dp</dimen>
+    <dimen name="video_width">240dp</dimen>
 </resources>
