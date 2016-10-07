@@ -28,8 +28,10 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.scoopmovies.thesam.scoopmovies.adapter.ReviewAdapter;
+import com.scoopmovies.thesam.scoopmovies.adapter.VideosAdapter;
 import com.scoopmovies.thesam.scoopmovies.model.Movies;
 import com.scoopmovies.thesam.scoopmovies.model.Review;
+import com.scoopmovies.thesam.scoopmovies.model.Video;
 import com.scoopmovies.thesam.scoopmovies.network.ApiUtils;
 import com.scoopmovies.thesam.scoopmovies.network.VolleySing;
 import com.scoopmovies.thesam.scoopmovies.utils.Utils;
@@ -57,12 +59,13 @@ public class DetailActivityFragment extends Fragment {
     private ImageView mPoster;
     private TextView mVoteAverrge;
     private RecyclerView mReviewRecycleView;
+    private RecyclerView mVideoRecycleView;
     private int moviePosition;
 
-    private RecyclerView.LayoutManager layoutManager;
     private ReviewAdapter reviewAdapter;
     private ArrayList<Review> mReviews;
-    private ArrayList<Review> mVideos;
+    private ArrayList<Video> mVideos;
+    private VideosAdapter videoAdapter;
 
     public DetailActivityFragment() {
         setHasOptionsMenu(true);
@@ -86,18 +89,15 @@ public class DetailActivityFragment extends Fragment {
             Intent intent = getActivity().getIntent();
             mMovie = intent.getParcelableExtra(Utils.EXTRA_MOVIE_INTENT);
             mReviews = getReview(getActivity(), mMovie.getId());
+            mVideos = getVideos(getActivity(), mMovie.getId());
 
         } else if (savedInstanceState != null && savedInstanceState.containsKey(Utils.PARC_MOVIE_TAG)) {
             mMovie = savedInstanceState.getParcelable(Utils.PARC_MOVIE_TAG);
             mReviews = savedInstanceState.getParcelableArrayList(Utils.PARC_REVIEWS_TAG);
             mVideos = savedInstanceState.getParcelableArrayList(Utils.PARC_VIDEOS_TAG);
         }
-        //Review Recycler settings
-        mReviewRecycleView = (RecyclerView) rootView.findViewById(R.id.reviews);
-        reviewAdapter = new ReviewAdapter(getActivity(), mReviews);
-        mReviewRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mReviewRecycleView.setAdapter(reviewAdapter);
-        reviewAdapter.notifyDataSetChanged();
+
+
         Log.d(TAG, "onCreateView: " + mReviews.toString());
         //widgets settings
         mTitle = (TextView) rootView.findViewById(R.id.movie_detail_title);
@@ -136,6 +136,24 @@ public class DetailActivityFragment extends Fragment {
             mCoverImageView.setTransitionName(
                     Utils.SHARED_TRANSITION_NAME + moviePosition);
         }
+        LinearLayoutManager layoutManager
+                = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        //Review & videos Recycler settings
+        mReviewRecycleView = (RecyclerView) view.findViewById(R.id.reviews);
+        mVideoRecycleView = (RecyclerView) view.findViewById(R.id.trailler);
+
+        reviewAdapter = new ReviewAdapter(getActivity(), mReviews);
+        videoAdapter = new VideosAdapter(getActivity(), mVideos);
+
+        mReviewRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mVideoRecycleView.setLayoutManager(layoutManager);
+
+        mReviewRecycleView.setAdapter(reviewAdapter);
+        mVideoRecycleView.setAdapter(videoAdapter);
+        mReviewRecycleView.setHasFixedSize(true);
+        mVideoRecycleView.setHasFixedSize(true);
+        reviewAdapter.notifyDataSetChanged();
+        videoAdapter.notifyDataSetChanged();
 
 
     }
@@ -212,5 +230,57 @@ public class DetailActivityFragment extends Fragment {
 
         return myReview;
     }
+
+    public ArrayList<Video> getVideos(final Context context, final String id) {
+        final ArrayList<Video> myVideos = new ArrayList<>();
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                (Request.Method.GET, ApiUtils.buildVideoUrl(id), null, new Response.Listener<JSONObject>() {
+                    JSONArray videos;
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        if (response != null) {
+                            JSONObject jsonObj = null;
+                            try {
+                                jsonObj = new JSONObject(response.toString());
+                                videos = jsonObj.getJSONArray(TAG_RESULTS);
+                                for (int i = 0; i < videos.length(); i++) {
+                                    Video videoItem = new Video();
+                                    JSONObject b = (JSONObject) videos.get(i);
+                                    videoItem.setId(b.getString(ApiUtils.ID));
+                                    videoItem.setKey(b.getString(ApiUtils.KEY));
+                                    videoItem.setName(b.getString(ApiUtils.NAME));
+                                    videoItem.setSite(b.getString(ApiUtils.SITE));
+                                    myVideos.add(videoItem);
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        try {
+                            videoAdapter.notifyDataSetChanged();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            Log.d(TAG, "onResponse: " + e);
+                        }
+//                        Toast.makeText(context, mReview.toString(), Toast.LENGTH_LONG).show();
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(context, "Error While Fetching Data", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(context, buildReviwUrl(id), Toast.LENGTH_LONG).show();
+
+                    }
+                });
+        // Access the RequestQueue through your singleton class. the context of  fragment is geted
+        // by call getActivity() methode
+        VolleySing.getInstance(context).addToRequestQueue(jsObjRequest);
+
+
+        return myVideos;
+    }
+
 
 }

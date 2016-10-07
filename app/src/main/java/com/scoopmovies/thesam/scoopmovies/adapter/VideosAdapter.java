@@ -39,8 +39,9 @@ public class VideosAdapter extends RecyclerView.Adapter<VideoHolder> {
 
     @Override
     public void onBindViewHolder(VideoHolder holder, int position) {
-        Glide.with(mContext).load(Utils.getUrl(mVideos.get(position)))
-                .fitCenter()
+        Glide.with(mContext).load(Utils.getThumbnailUrl(mVideos.get(position)))
+                .override(R.dimen.video_width, R.dimen.video_height)
+                .centerCrop()
                 .crossFade()
                 .error(R.drawable.posternotfound)
                 .into(holder.videoImageView);

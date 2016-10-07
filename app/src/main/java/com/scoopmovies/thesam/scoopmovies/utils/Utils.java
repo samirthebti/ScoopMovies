@@ -26,7 +26,7 @@ public class Utils {
     public final static String EXTRA_MOVIE_POSITION = "movie_position";
     public static final String EXTRA_MOVIE_INTENT = "mMovie";
     public static final String SORTBY_PREF = "pref";
-    private static final String SITE_YOUTUBE = "youtube";
+    private static final String SITE_YOUTUBE = "YouTube";
 
     public static int getScreenWidth(@NonNull Context context) {
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -35,6 +35,26 @@ public class Utils {
         return displayMetrics.widthPixels;
     }
 
+    /**
+     * get the thumbnil image from youtube trailler
+     *
+     * @param video
+     * @return
+     */
+    public static String getThumbnailUrl(@NonNull Video video) {
+        if (SITE_YOUTUBE.equals(video.getSite())) {
+            return String.format("http://img.youtube.com/vi/" + video.getKey() + "/0.jpg");
+        } else {
+            throw new UnsupportedOperationException("Only YouTube is supported!");
+        }
+    }
+
+    /**
+     * get the url of the Video for share acction in details screen
+     *
+     * @param video
+     * @return
+     */
     public static String getUrl(@NonNull Video video) {
         if (SITE_YOUTUBE.equals(video.getSite())) {
             return String.format("http://www.youtube.com/watch?v=%1$s", video.getId());
