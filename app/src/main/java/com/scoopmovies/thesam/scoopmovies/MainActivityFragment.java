@@ -149,7 +149,11 @@ public class MainActivityFragment extends Fragment {
         if (savedInstanceState == null || !savedInstanceState.containsKey(Utils.PARC_MOVIES_TAG)) {
             mChoix = mCurentSortby;
             try {
-                movies = getMovies(getActivity(), mChoix);
+                if (!mCurentSortby.equals(FOVORITE)) {
+                    movies = getMovies(getActivity(), mChoix);
+                } else {
+                    movies = getFavorit();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -243,7 +247,6 @@ public class MainActivityFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-
     }
 
     public ArrayList getMovies(final Context context, final String sortBy) {

@@ -12,7 +12,9 @@ import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -159,6 +161,8 @@ public class DetailActivityFragment extends Fragment {
 
         mReviewRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mVideoRecycleView.setLayoutManager(layoutManager);
+        mVideoRecycleView.getRecycledViewPool().clear();
+        mReviewRecycleView.getRecycledViewPool().clear();
         reviewAdapter.notifyDataSetChanged();
         videoAdapter.notifyDataSetChanged();
         mReviewRecycleView.setHasFixedSize(true);
@@ -327,7 +331,9 @@ public class DetailActivityFragment extends Fragment {
             if (rowId == -1) {
                 Toast.makeText(getContext(), "Insertion FAiled", Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(getContext(), "Insertion Suscces " + rowId, Toast.LENGTH_LONG).show();
+                Snackbar.make(getView(), movie.getTitre() + " Added to favorite List ", Snackbar.LENGTH_LONG)
+                        .setActionTextColor(getResources().getColor(R.color.ok_color)).show();
+
                 add.setImageResource(R.drawable.ic_favorit);
                 mFavorite = true;
             }
@@ -336,9 +342,12 @@ public class DetailActivityFragment extends Fragment {
                     MovieEntry.CONTENT_URI,
                     MovieEntry.COLUMN_ID + "=? ",
                     new String[] {movie.getId()});
-            Toast.makeText(getActivity(), "Deleted " + rowsdeleted, Toast.LENGTH_LONG).show();
             if (rowsdeleted != 0) {
                 add.setImageResource(R.drawable.ic_nofavorit);
+                Snackbar.make(getView(), movie.getTitre() + " Removed from favorite List ", Snackbar.LENGTH_LONG)
+                        .setAction("ok", null)
+                        .setActionTextColor(ContextCompat.getColor(getActivity().getApplicationContext(), R.color.primary_dark))
+                        .show();
                 mFavorite = false;
             }
         }
