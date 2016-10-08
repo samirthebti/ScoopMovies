@@ -65,6 +65,7 @@ public class MainActivityFragment extends Fragment {
     private int mCurrentPosition;
 
 
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout
+<android.support.design.widget.CoordinatorLayout
     android:id="@+id/activity_detail_container"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -27,7 +27,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/details_backdrop_height"
                 android:adjustViewBounds="true"
+                android:clickable="true"
                 android:scaleType="centerCrop"
+
                 />
 
             <ImageView
@@ -130,7 +132,6 @@
                 android:background="?android:selectableItemBackground"
                 android:foreground="?android:attr/selectableItemBackground"
                 tools:clickable="true"
-                tools:focusable="true"
                 />
 
             <LinearLayout
@@ -191,4 +192,14 @@
 
         </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>
-</FrameLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/addtofavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:background="?attr/selectableItemBackground"
+        android:src="@drawable/ic_nofavorit"
+        />
+</android.support.design.widget.CoordinatorLayout>

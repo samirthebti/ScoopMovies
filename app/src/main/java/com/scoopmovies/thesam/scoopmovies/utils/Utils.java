@@ -14,6 +14,8 @@ import com.scoopmovies.thesam.scoopmovies.model.Video;
 
 public class Utils {
     public static final double TMDB_POSTER_SIZE_RATIO = 185.0 / 277.0;
+    public static final String SORT_BY_EXTRA = "sortby";
+
     public static final String PARC_MOVIES_TAG = "movies";
     public static final String PARC_REVIEWS_TAG = "reviews";
     public static final String PARC_VIDEOS_TAG = "reviews";

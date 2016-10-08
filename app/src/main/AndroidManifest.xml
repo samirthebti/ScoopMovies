@@ -44,6 +44,13 @@
             android:name="io.fabric.ApiKey"
             android:value="2c30c811375be5b53efab18c09d1f8bdbaa23ba7"
             />
+
+        <provider
+            android:name=".data.MovieProvider"
+            android:authorities="com.scoopmovies.thesam.app"
+            android:enabled="true"
+            android:exported="true"
+            />
     </application>
 
 </manifest>

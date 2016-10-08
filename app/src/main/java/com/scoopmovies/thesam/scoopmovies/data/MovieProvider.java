@@ -95,18 +95,16 @@ public class MovieProvider extends ContentProvider {
         switch (matcher) {
             case MOVIE:
                 long _id = mMovieDBHelper.getReadableDatabase().insert(MovieEntry.TABLE_NAME, null, contentValues);
-                if (_id == -1) {
-                    throw new android.database.SQLException("Error while Inert data");
-                } else {
+                if (_id != -1) {
                     resultUri = MovieDBContract.MovieEntry.buildMovieWithId(String.valueOf(_id));
+                } else {
+                    throw new android.database.SQLException("Error while Inert data");
                 }
                 break;
             default:
                 throw new UnsupportedOperationException("Insert uri not matcher");
-
         }
         getContext().getContentResolver().notifyChange(uri, null);
-
         return resultUri;
     }
 

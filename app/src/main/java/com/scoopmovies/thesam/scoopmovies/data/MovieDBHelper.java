@@ -36,12 +36,12 @@ public class MovieDBHelper extends SQLiteOpenHelper {
 //                + ReviewEntry.COLUMN_CONTENT + " STRING NOT NULL UNIQUE," +
 //                " );";
         final String SQL_CREATE_MOVIE_TABLE = "CREATE TABLE " + MovieEntry.TABLE_NAME
-                + "(" + MovieEntry.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
-                + MovieEntry.COLUMN_TITLE + " STRING NOT NULL,"
-                + MovieEntry.COLUMN_BACKDROP + " INTEGER NOT NULL UNIQUE,"
-                + MovieEntry.COLUMN_POSTER + " INTEGER NOT NULL UNIQUE,"
-                + MovieEntry.COLUMN_AVERGE + " REAL NOT NULL UNIQUE,"
-                + MovieEntry.COLUMN_OVERVIEW + " STRING NOT NULL UNIQUE,"
+                + "( " + MovieEntry.COLUMN_ID + " INTEGER PRIMARY KEY, "
+                + MovieEntry.COLUMN_TITLE + " STRING NOT NULL, "
+                + MovieEntry.COLUMN_BACKDROP + " INTEGER, "
+                + MovieEntry.COLUMN_POSTER + " INTEGER, "
+                + MovieEntry.COLUMN_AVERGE + " REAL, "
+                + MovieEntry.COLUMN_OVERVIEW + " STRING NOT NULL,"
 //                + MovieEntry.COLUMN_FAVOIRT + " INTEGER"
 //                // foreign key for videos
 //                + "FOREIGN KEY (" + MovieEntry.COLUMN_VIDEO_KEY + ") REFERENCES " +
@@ -50,7 +50,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
 //                + "FOREIGN KEY (" + MovieEntry.COLUMN_REVIEW_KEY + ") REFERENCES " +
 //                ReviewEntry.TABLE_NAME + "(" + ReviewEntry.COLUMN_ID + "),"
 
-                + MovieEntry.COLUMN_DATE + " STRING NOT NULL UNIQUE," +
+                + MovieEntry.COLUMN_DATE + " STRING NOT NULL " +
                 " );";
 //        sqLiteDatabase.execSQL(SQL_CREATE_VIDEO_TABLE);
 //        sqLiteDatabase.execSQL(SQL_CREATE_REVIEW_TABLE);

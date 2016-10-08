@@ -1,12 +1,17 @@
 package com.scoopmovies.thesam.scoopmovies;
 
 
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,11 +35,14 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.scoopmovies.thesam.scoopmovies.adapter.ReviewAdapter;
 import com.scoopmovies.thesam.scoopmovies.adapter.VideosAdapter;
+import com.scoopmovies.thesam.scoopmovies.data.MovieDBContract.MovieEntry;
 import com.scoopmovies.thesam.scoopmovies.model.Movies;
 import com.scoopmovies.thesam.scoopmovies.model.Review;
 import com.scoopmovies.thesam.scoopmovies.model.Video;
 import com.scoopmovies.thesam.scoopmovies.network.ApiUtils;
 import com.scoopmovies.thesam.scoopmovies.network.VolleySing;
+import com.scoopmovies.thesam.scoopmovies.utils.ItemClickSupport;
+import com.scoopmovies.thesam.scoopmovies.utils.ItemClickSupport.OnItemClickListener;
 import com.scoopmovies.thesam.scoopmovies.utils.Utils;
 
 import org.json.JSONArray;
@@ -58,10 +67,11 @@ public class DetailActivityFragment extends Fragment {
     private ImageView mCover;
     private ImageView mPoster;
     private TextView mVoteAverrge;
+    private FloatingActionButton add;
     private RecyclerView mReviewRecycleView;
     private RecyclerView mVideoRecycleView;
     private int moviePosition;
-
+    private boolean mFavorite;
     private ReviewAdapter reviewAdapter;
     private ArrayList<Review> mReviews;
     private ArrayList<Video> mVideos;
@@ -97,9 +107,27 @@ public class DetailActivityFragment extends Fragment {
             mVideos = savedInstanceState.getParcelableArrayList(Utils.PARC_VIDEOS_TAG);
         }
 
-
+        try {
+            mFavorite = isFaorite(mMovie);
+        } catch (Exception e) {
+            mFavorite = false;
+            e.printStackTrace();
+        }
         Log.d(TAG, "onCreateView: " + mReviews.toString());
         //widgets settings
+        add = (FloatingActionButton) rootView.findViewById(R.id.addtofavorite);
+        if (mFavorite) {
+            add.setImageResource(R.drawable.ic_favorit);
+        }
+        add.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mMovie != null) {
+                    addToFavorite(mMovie);
+                }
+
+            }
+        });
         mTitle = (TextView) rootView.findViewById(R.id.movie_detail_title);
         mTitle.setText(mMovie.getTitre());
 
@@ -156,6 +184,12 @@ public class DetailActivityFragment extends Fragment {
 
         reviewAdapter.notifyDataSetChanged();
         videoAdapter.notifyDataSetChanged();
+        ItemClickSupport.addTo(mVideoRecycleView).setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                Toast.makeText(getContext(), mVideos.get(position).getKey().toString(), Toast.LENGTH_LONG).show();
+            }
+        });
 
 
     }
@@ -284,6 +318,52 @@ public class DetailActivityFragment extends Fragment {
 
         return myVideos;
     }
+
+    private void addToFavorite(Movies movie) {
+        Uri rowUri;
+        if (!mFavorite) {
+            ContentValues values = new ContentValues();
+            values.put(MovieEntry.COLUMN_TITLE, movie.getTitre());
+            values.put(MovieEntry.COLUMN_ID, movie.getId());
+            values.put(MovieEntry.COLUMN_POSTER, movie.getPoster());
+            values.put(MovieEntry.COLUMN_BACKDROP, movie.getBackdrop_path());
+            values.put(MovieEntry.COLUMN_AVERGE, movie.getVote_average());
+            values.put(MovieEntry.COLUMN_DATE, movie.getDate());
+            values.put(MovieEntry.COLUMN_OVERVIEW, movie.getOverview());
+            rowUri = getContext().getContentResolver().insert(MovieEntry.CONTENT_URI, values);
+            long rowId = ContentUris.parseId(rowUri);
+            if (rowId == -1) {
+                Toast.makeText(getContext(), "Insertion FAiled", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(getContext(), "Insertion Suscces " + rowId, Toast.LENGTH_LONG).show();
+                add.setImageResource(R.drawable.ic_favorit);
+            }
+        }
+    }
+
+
+    private boolean isFaorite(Movies movie) {
+        boolean test = false;
+
+        try {
+            Cursor cursor = getContext().getContentResolver().query(
+                    MovieEntry.CONTENT_URI,
+                    new String[] {MovieEntry.COLUMN_ID},
+                    MovieEntry.COLUMN_ID + "=? ",
+                    new String[] {movie.getId()}, null);
+            if (cursor == null || cursor.getCount() > 0) {
+                test = true;
+                cursor.close();
+            }
+        } catch (Exception e) {
+            Log.d(TAG, "isFaorite: " + e);
+
+        }
+
+        return test;
+
+    }
+
 
 
 }

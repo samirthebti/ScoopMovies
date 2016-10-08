@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.crashlytics.android.Crashlytics;
+import com.facebook.stetho.Stetho;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 .beginTransaction()
                 .add(R.id.container, new MainActivityFragment())
                 .commit();
-
+        Stetho.initializeWithDefaults(this);
         Fabric.with(this, new Crashlytics());
 
     }

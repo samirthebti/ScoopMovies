@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<android.support.v7.widget.RecyclerView
-    android:id="@+id/recycler_view"
+<android.support.design.widget.CoordinatorLayout
+    android:id="@+id/activity_detail_container"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:selectableItemBackground"
-    android:foreground="?android:attr/selectableItemBackground"
-    tools:clickable="true"
-    tools:focusable="true"
+    android:fitsSystemWindows="false"
     >
 
-</android.support.v7.widget.RecyclerView>
-
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:selectableItemBackground"
+        android:foreground="?android:attr/selectableItemBackground"
+        tools:clickable="true"
+        >
+    </android.support.v7.widget.RecyclerView>
+</android.support.design.widget.CoordinatorLayout>
 

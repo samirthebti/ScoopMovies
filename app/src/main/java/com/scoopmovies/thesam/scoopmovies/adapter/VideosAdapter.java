@@ -35,7 +35,7 @@ public class VideosAdapter extends RecyclerView.Adapter<VideoHolder> {
 
     @Override
     public VideoHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.activity_videos, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_videos, parent, false);
         VideoHolder videoHolder = new VideoHolder(view);
         return videoHolder;
     }
@@ -43,12 +43,16 @@ public class VideosAdapter extends RecyclerView.Adapter<VideoHolder> {
     @Override
     public void onBindViewHolder(VideoHolder holder, int position) {
         Video video = mVideos.get(position);
-        Glide.with(holder.videoImageView.getContext()).load(Utils.getThumbnailUrl(video))
-                .override(R.dimen.video_width, R.dimen.video_height)
-                .fitCenter()
+        try {
+            Glide.with(mContext).load(Utils.getThumbnailUrl(video))
+                    .override(R.dimen.video_width, R.dimen.video_height)
+                    .fitCenter()
 //                .error(R.drawable.posternotfound)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .into(holder.videoImageView);
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .into(holder.videoImageView);
+        } catch (Exception e) {
+            Log.e(TAG, "onBindViewHolder: " + e);
+        }
 
         Log.d(TAG, "onBindViewHolder: " + Utils.getThumbnailUrl(video));
     }
