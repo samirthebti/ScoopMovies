@@ -8,7 +8,7 @@
         android:checkable="false"
         android:icon="@drawable/ic_sort_black_24dp"
         android:title="@string/action_settings"
-        app:showAsAction="ifRoom"
+        app:showAsAction="always"
         >
         <menu>
             <item
@@ -24,6 +24,13 @@
                 android:orderInCategory="200"
                 android:title="TopRated"
                 app:showAsAction="never|withText"
+                />
+            <item
+                android:id="@+id/favorite_menu_item"
+                android:orderInCategory="200"
+
+                android:title="Mes fovorits"
+                tools:showAsAction="never"
                 />
 
 

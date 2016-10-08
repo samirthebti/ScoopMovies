@@ -4,6 +4,7 @@ import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
@@ -26,6 +27,7 @@ import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.scoopmovies.thesam.scoopmovies.adapter.GridAdapter;
+import com.scoopmovies.thesam.scoopmovies.data.MovieDBContract.MovieEntry;
 import com.scoopmovies.thesam.scoopmovies.model.Movies;
 import com.scoopmovies.thesam.scoopmovies.network.ApiUtils;
 import com.scoopmovies.thesam.scoopmovies.network.VolleySing;
@@ -53,6 +55,7 @@ public class MainActivityFragment extends Fragment {
     public static final String LOG_MOVIES = "movies";
     public static final String TOP_RATED = "top_rated";
     public static final String POPULAR = "popular";
+    public static final String FOVORITE = "favorite";
     private List<Movies> movies;
     private RecyclerView mRecyclerView;
     private int mDesiredColumnWidth;
@@ -63,7 +66,6 @@ public class MainActivityFragment extends Fragment {
     private String mCurentSortby;
     private SharedPreferences sharedPref;
     private int mCurrentPosition;
-
 
 
     @Override
@@ -86,7 +88,10 @@ public class MainActivityFragment extends Fragment {
         super.onResume();
         mCurentSortby = sharedPref.getString(getString(R.string.sharedpref), POPULAR);
         mCurrentPosition = sharedPref.getInt(getString(R.string.positionpref), 1);
-
+        if (mCurentSortby.equals(FOVORITE)) {
+            movies = getFavorit();
+            mGridAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -96,10 +101,10 @@ public class MainActivityFragment extends Fragment {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(getString(R.string.sharedpref), mCurentSortby);
         editor.apply();
-
         SharedPreferences.Editor editor1 = sharedPref.edit();
         editor1.putInt(getString(R.string.positionpref), mCurrentPosition);
         editor1.apply();
+
 
     }
 
@@ -112,7 +117,6 @@ public class MainActivityFragment extends Fragment {
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mRecyclerView.smoothScrollToPosition(mCurrentPosition);
-
     }
 
     @Override
@@ -129,6 +133,7 @@ public class MainActivityFragment extends Fragment {
             editor.putInt(getString(R.string.positionpref), 1);
             editor.apply();
         }
+
 
     }
 
@@ -197,7 +202,6 @@ public class MainActivityFragment extends Fragment {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
                 mRecyclerView.getRecycledViewPool().clear();
                 mCurentSortby = mChoix;
             }
@@ -215,6 +219,22 @@ public class MainActivityFragment extends Fragment {
                 mRecyclerView.getRecycledViewPool().clear();
                 mCurentSortby = mChoix;
             }
+        }
+        if (id == R.id.favorite_menu_item) {
+            mChoix = FOVORITE;
+            if (!mCurentSortby.equals(mChoix)) {
+                movies.clear();
+                try {
+                    movies = getFavorit();
+                    mGridAdapter.notifyDataSetChanged();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Log.d(LOG_TAG, "onOptionsItemSelected: " + mCurentSortby);
+                mRecyclerView.getRecycledViewPool().clear();
+                mCurentSortby = mChoix;
+            }
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -250,7 +270,6 @@ public class MainActivityFragment extends Fragment {
                                     movie.setDate(b.getString(ApiUtils.RELEASE_DATE));
                                     movie.setVote_average(b.getString(ApiUtils.VOTE_AVERGE));
                                     myMovies.add(movie);
-
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -272,6 +291,24 @@ public class MainActivityFragment extends Fragment {
         VolleySing.getInstance(context).addToRequestQueue(mJsObjRequest);
 
 
+        return myMovies;
+    }
+
+    public ArrayList<Movies> getFavorit() {
+        Cursor cursor = getContext().getContentResolver().query(MovieEntry.CONTENT_URI, null, null, null, null);
+        myMovies.clear();
+        while (cursor.moveToNext()) {
+            Movies movie = new Movies();
+            movie.setId(cursor.getString(cursor.getColumnIndex(MovieEntry.COLUMN_ID)));
+            movie.setTitre(cursor.getString(cursor.getColumnIndex(MovieEntry.COLUMN_TITLE)));
+            movie.setVote_average(cursor.getString(cursor.getColumnIndex(MovieEntry.COLUMN_AVERGE)));
+            movie.setBackdrop_path(cursor.getString(cursor.getColumnIndex(MovieEntry.COLUMN_BACKDROP)));
+            movie.setPoster(cursor.getString(cursor.getColumnIndex(MovieEntry.COLUMN_POSTER)));
+            movie.setDate(cursor.getString(cursor.getColumnIndex(MovieEntry.COLUMN_DATE)));
+            movie.setOverview(cursor.getString(cursor.getColumnIndex(MovieEntry.COLUMN_OVERVIEW)));
+            myMovies.add(movie);
+        }
+        cursor.close();
         return myMovies;
     }
 }
