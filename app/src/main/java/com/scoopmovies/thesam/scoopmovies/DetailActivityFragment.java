@@ -71,7 +71,7 @@ public class DetailActivityFragment extends Fragment {
     private RecyclerView mReviewRecycleView;
     private RecyclerView mVideoRecycleView;
     private int moviePosition;
-    private boolean mFavorite;
+    private boolean mFavorite = false;
     private ReviewAdapter reviewAdapter;
     private ArrayList<Review> mReviews;
     private ArrayList<Video> mVideos;
@@ -107,27 +107,11 @@ public class DetailActivityFragment extends Fragment {
             mVideos = savedInstanceState.getParcelableArrayList(Utils.PARC_VIDEOS_TAG);
         }
 
-        try {
-            mFavorite = isFaorite(mMovie);
-        } catch (Exception e) {
-            mFavorite = false;
-            e.printStackTrace();
-        }
-        Log.d(TAG, "onCreateView: " + mReviews.toString());
-        //widgets settings
         add = (FloatingActionButton) rootView.findViewById(R.id.addtofavorite);
+        mFavorite = isFaorite(mMovie);
         if (mFavorite) {
             add.setImageResource(R.drawable.ic_favorit);
         }
-        add.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mMovie != null) {
-                    addToFavorite(mMovie);
-                }
-
-            }
-        });
         mTitle = (TextView) rootView.findViewById(R.id.movie_detail_title);
         mTitle.setText(mMovie.getTitre());
 
@@ -175,19 +159,27 @@ public class DetailActivityFragment extends Fragment {
 
         mReviewRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mVideoRecycleView.setLayoutManager(layoutManager);
-
+        reviewAdapter.notifyDataSetChanged();
+        videoAdapter.notifyDataSetChanged();
+        mReviewRecycleView.setHasFixedSize(true);
+        mVideoRecycleView.setHasFixedSize(true);
         mReviewRecycleView.setAdapter(reviewAdapter);
         mVideoRecycleView.setAdapter(videoAdapter);
 
-        mReviewRecycleView.setHasFixedSize(true);
-        mVideoRecycleView.setHasFixedSize(true);
-
-        reviewAdapter.notifyDataSetChanged();
-        videoAdapter.notifyDataSetChanged();
         ItemClickSupport.addTo(mVideoRecycleView).setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
                 Toast.makeText(getContext(), mVideos.get(position).getKey().toString(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        add.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mMovie != null) {
+                    addToFavorite(mMovie);
+                }
+
             }
         });
 
@@ -337,6 +329,17 @@ public class DetailActivityFragment extends Fragment {
             } else {
                 Toast.makeText(getContext(), "Insertion Suscces " + rowId, Toast.LENGTH_LONG).show();
                 add.setImageResource(R.drawable.ic_favorit);
+                mFavorite = true;
+            }
+        } else {
+            int rowsdeleted = getContext().getContentResolver().delete(
+                    MovieEntry.CONTENT_URI,
+                    MovieEntry.COLUMN_ID + "=? ",
+                    new String[] {movie.getId()});
+            Toast.makeText(getActivity(), "Deleted " + rowsdeleted, Toast.LENGTH_LONG).show();
+            if (rowsdeleted != 0) {
+                add.setImageResource(R.drawable.ic_nofavorit);
+                mFavorite = false;
             }
         }
     }
@@ -344,26 +347,17 @@ public class DetailActivityFragment extends Fragment {
 
     private boolean isFaorite(Movies movie) {
         boolean test = false;
-
-        try {
-            Cursor cursor = getContext().getContentResolver().query(
-                    MovieEntry.CONTENT_URI,
-                    new String[] {MovieEntry.COLUMN_ID},
-                    MovieEntry.COLUMN_ID + "=? ",
-                    new String[] {movie.getId()}, null);
-            if (cursor == null || cursor.getCount() > 0) {
-                test = true;
-                cursor.close();
-            }
-        } catch (Exception e) {
-            Log.d(TAG, "isFaorite: " + e);
-
+        Cursor cursor = getContext().getContentResolver().query(
+                MovieEntry.CONTENT_URI,
+                new String[] {MovieEntry.COLUMN_ID},
+                MovieEntry.COLUMN_ID + "=? ",
+                new String[] {movie.getId()}, null);
+        if (cursor != null && cursor.getCount() > 0) {
+            test = true;
         }
-
+        cursor.close();
         return test;
-
     }
-
 
 
 }
