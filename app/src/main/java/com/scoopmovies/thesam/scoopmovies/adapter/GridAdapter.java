@@ -17,6 +17,7 @@ import com.scoopmovies.thesam.scoopmovies.model.Movies;
 import com.scoopmovies.thesam.scoopmovies.network.ApiUtils;
 import com.scoopmovies.thesam.scoopmovies.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,18 +40,21 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
             super(v);
             posterImage = (ImageView) v.findViewById(R.id.poster);
             title = (TextView) v.findViewById(R.id.title);
-
         }
 
 
     }
 
-    public GridAdapter(Context mContext, List<Movies> mMovies, int actualPosterViewWidth) {
+    public GridAdapter(Context mContext, int actualPosterViewWidth) {
         this.mContext = mContext;
-        this.mMovies = mMovies;
+
         mPosterWidth = actualPosterViewWidth;
         mPosterHeight = (int) (actualPosterViewWidth / Utils.TMDB_POSTER_SIZE_RATIO);
+    }
 
+    public void setData(ArrayList<Movies> data) {
+        this.mMovies = data;
+        this.notifyDataSetChanged();
     }
 
     @Override

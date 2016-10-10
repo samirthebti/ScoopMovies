@@ -40,12 +40,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
 
 
 import static com.scoopmovies.thesam.scoopmovies.network.ApiUtils.buildUrl;
+import static com.scoopmovies.thesam.scoopmovies.utils.Utils.FAVORITE;
+import static com.scoopmovies.thesam.scoopmovies.utils.Utils.POPULAR;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -53,10 +54,8 @@ import static com.scoopmovies.thesam.scoopmovies.network.ApiUtils.buildUrl;
 public class MainActivityFragment extends Fragment {
     public static final String LOG_TAG = MainActivityFragment.class.getSimpleName();
     public static final String LOG_MOVIES = "movies";
-    public static final String TOP_RATED = "top_rated";
-    public static final String POPULAR = "popular";
-    public static final String FOVORITE = "favorite";
-    private List<Movies> movies;
+
+    private ArrayList<Movies> movies;
     private RecyclerView mRecyclerView;
     private int mDesiredColumnWidth;
     private GridAdapter mGridAdapter;
@@ -86,9 +85,9 @@ public class MainActivityFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        mCurentSortby = sharedPref.getString(getString(R.string.sharedpref), POPULAR);
+        mCurentSortby = sharedPref.getString(getString(R.string.sharedpref), Utils.POPULAR);
         mCurrentPosition = sharedPref.getInt(getString(R.string.positionpref), 1);
-        if (mCurentSortby.equals(FOVORITE)) {
+        if (mCurentSortby.equals(FAVORITE)) {
             movies = getFavorit();
             mGridAdapter.notifyDataSetChanged();
         }
@@ -149,7 +148,7 @@ public class MainActivityFragment extends Fragment {
         if (savedInstanceState == null || !savedInstanceState.containsKey(Utils.PARC_MOVIES_TAG)) {
             mChoix = mCurentSortby;
             try {
-                if (!mCurentSortby.equals(FOVORITE)) {
+                if (!mCurentSortby.equals(FAVORITE)) {
                     movies = getMovies(getActivity(), mChoix);
                 } else {
                     movies = getFavorit();
@@ -166,7 +165,8 @@ public class MainActivityFragment extends Fragment {
         int actualPosterViewWidth = gridWidth / optimalColumnCount;
         //SetUp the recyclerview
         mRecyclerView.setHasFixedSize(true);
-        mGridAdapter = new GridAdapter(getActivity().getApplicationContext(), movies, actualPosterViewWidth);
+        mGridAdapter = new GridAdapter(getActivity().getApplicationContext(), actualPosterViewWidth);
+        mGridAdapter.setData(movies);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         mGridAdapter.notifyDataSetChanged();
         mRecyclerView.setAdapter(new SlideInBottomAnimationAdapter(mGridAdapter));
@@ -198,7 +198,7 @@ public class MainActivityFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.toprated_menu_item) {
-            mChoix = TOP_RATED;
+            mChoix = Utils.TOP_RATED;
             if (!mCurentSortby.equals(mChoix)) {
                 movies.clear();
                 try {
@@ -225,7 +225,7 @@ public class MainActivityFragment extends Fragment {
             }
         }
         if (id == R.id.favorite_menu_item) {
-            mChoix = FOVORITE;
+            mChoix = Utils.FAVORITE;
             if (!mCurentSortby.equals(mChoix)) {
                 movies.clear();
                 try {

@@ -173,7 +173,7 @@ public class DetailActivityFragment extends Fragment {
         ItemClickSupport.addTo(mVideoRecycleView).setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                Toast.makeText(getContext(), mVideos.get(position).getKey().toString(), Toast.LENGTH_LONG).show();
+
             }
         });
 
