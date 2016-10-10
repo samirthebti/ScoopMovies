@@ -9,6 +9,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.scoopmovies.thesam.scoopmovies.MainActivity"
     >
 
@@ -33,26 +34,35 @@
                 />
         </android.support.design.widget.AppBarLayout>
 
-        <fragment
-            android:id="@+id/container"
-            android:name="com.scoopmovies.thesam.scoopmovies.MainActivityFragment"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="310dp"
-            android:layout_height="match_parent"
-            tools:Text="Eroor while fetching data"
-            tools:background="@color/primary_light"
-            tools:context=".MainActivity"
-
-            />
-
-        <FrameLayout
-            android:id="@+id/details_container"
-            xmlns:tools="http://schemas.android.com/tools"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:elevation="8dp"
-            tools:Text="Eroor while fetching data"
-            />
+
+            android:orientation="horizontal"
+            >
+
+            <fragment
+                android:id="@+id/container"
+                android:name="com.scoopmovies.thesam.scoopmovies.MainActivityFragment"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="310dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                tools:Text="Eroor while fetching data"
+                tools:background="@color/primary_light"
+                tools:context=".MainActivity"
+                />
+
+            <FrameLayout
+                android:id="@+id/details_container"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                >
+
+            </FrameLayout>
+        </LinearLayout>
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

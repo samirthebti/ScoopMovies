@@ -26,10 +26,10 @@ public class DetailActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         if (savedInstanceState == null) {
             DetailActivityFragment detailActivityFragment = new DetailActivityFragment();
-//            detailActivityFragment.setArguments(getIntent().getExtras());
-//            bundle = getIntent().getExtras();
-//            mMovie = bundle.getParcelable(Utils.EXTRA_MOVIE_INTENT);
-//            getSupportActionBar().setTitle(mMovie.getTitre());
+            detailActivityFragment.setArguments(getIntent().getExtras());
+            bundle = getIntent().getExtras();
+            mMovie = bundle.getParcelable(Utils.EXTRA_MOVIE_INTENT);
+            getSupportActionBar().setTitle(mMovie.getTitre());
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.details_container, detailActivityFragment, DETAIL_FRAGMENT_TAG)
                     .commit();

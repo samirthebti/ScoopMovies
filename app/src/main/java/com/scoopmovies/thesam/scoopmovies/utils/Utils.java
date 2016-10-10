@@ -80,7 +80,7 @@ public class Utils {
         return b;
     }
 
-    public static boolean ismainTwoPanel(Activity context) {
+    public static boolean isMainTwoPanel(Activity context) {
         boolean b;
         if (context.findViewById(R.id.details_container) == null) {
             b = false;

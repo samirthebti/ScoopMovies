@@ -47,7 +47,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="310dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 tools:Text="Eroor while fetching data"
                 tools:background="@color/primary_light"
                 tools:context=".MainActivity"
@@ -58,7 +58,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
+                android:layout_weight="6"
                 >
 
             </FrameLayout>

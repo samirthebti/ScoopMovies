@@ -11,7 +11,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -136,6 +135,7 @@ public class MainActivityFragment extends Fragment {
 
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -166,6 +166,7 @@ public class MainActivityFragment extends Fragment {
         //SetUp the recyclerview
         mRecyclerView.setHasFixedSize(true);
         mGridAdapter = new GridAdapter(getActivity().getApplicationContext(), actualPosterViewWidth);
+
         mGridAdapter.setData(movies);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         mGridAdapter.notifyDataSetChanged();
@@ -176,7 +177,6 @@ public class MainActivityFragment extends Fragment {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
                 mCurrentPosition = position;
-
                 //setup the animation and lanche the intent
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
                     ActivityOptions activityOptions = ActivityOptions
@@ -184,7 +184,7 @@ public class MainActivityFragment extends Fragment {
                                     new android.util.Pair<View, String>(v, Utils.SHARED_TRANSITION_NAME + position));
                     ((Callback) getActivity()).onMovieItemSelected(movies.get(position), position);
                 } else {
-                    ((Callback) getActivity()).onMovieItemSelected(movies.get(position),position);
+                    ((Callback) getActivity()).onMovieItemSelected(movies.get(position), position);
                 }
             }
         });
@@ -200,20 +200,21 @@ public class MainActivityFragment extends Fragment {
                 movies.clear();
                 try {
                     movies = getMovies(getActivity(), mChoix);
+                    mGridAdapter.notifyDataSetChanged();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 mRecyclerView.getRecycledViewPool().clear();
                 mCurentSortby = mChoix;
             }
-            Log.d(LOG_TAG, "onOptionsItemSelected: ");
         }
         if (id == R.id.popular_menu_item) {
-            mChoix = POPULAR;
+            mChoix = Utils.POPULAR;
             if (!mCurentSortby.equals(mChoix)) {
                 movies.clear();
                 try {
                     movies = getMovies(getActivity(), mChoix);
+                    mGridAdapter.notifyDataSetChanged();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -231,13 +232,10 @@ public class MainActivityFragment extends Fragment {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                Log.d(LOG_TAG, "onOptionsItemSelected: " + mCurentSortby);
                 mRecyclerView.getRecycledViewPool().clear();
                 mCurentSortby = mChoix;
             }
-
         }
-
         return super.onOptionsItemSelected(item);
     }
 

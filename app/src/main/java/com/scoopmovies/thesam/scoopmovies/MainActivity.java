@@ -5,12 +5,10 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.crashlytics.android.Crashlytics;
-import com.facebook.stetho.Stetho;
 import com.scoopmovies.thesam.scoopmovies.model.Movies;
 import com.scoopmovies.thesam.scoopmovies.utils.Callback;
 import com.scoopmovies.thesam.scoopmovies.utils.Utils;
@@ -30,18 +28,12 @@ public class MainActivity extends AppCompatActivity implements Callback {
         setSupportActionBar(toolbar);
         if (findViewById(R.id.details_container) != null) {
             mTwoPanel = true;
-            if (savedInstanceState == null) {
-                Log.d(TAG, "onCreate: ");
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.details_container, new DetailActivityFragment(), DETAILS_FRAGMENT_TAG)
-                        .commit();
-            }
+
         } else {
             mTwoPanel = false;
         }
 
-        Stetho.initializeWithDefaults(this);
+//        Stetho.initializeWithDefaults(this);
         Fabric.with(this, new Crashlytics());
 
     }
@@ -65,14 +57,16 @@ public class MainActivity extends AppCompatActivity implements Callback {
     @Override
     public void onMovieItemSelected(Movies movies, int position) {
         if (mTwoPanel) {
-            Bundle bundle = new Bundle();
-            bundle.putParcelable("movie", movies);
-            DetailActivityFragment detailActivityFragment = new DetailActivityFragment();
-            detailActivityFragment.setArguments(bundle);
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.details_container, detailActivityFragment, DETAILS_FRAGMENT_TAG);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+           if (movies!=null){
+               Bundle bundle = new Bundle();
+               bundle.putParcelable("movie", movies);
+               DetailActivityFragment detailActivityFragment = new DetailActivityFragment();
+               detailActivityFragment.setArguments(bundle);
+               FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+               fragmentTransaction.replace(R.id.details_container, detailActivityFragment, DETAILS_FRAGMENT_TAG);
+               fragmentTransaction.addToBackStack(null);
+               fragmentTransaction.commit();
+           }
         } else {
             Intent intent = new Intent(this, DetailActivity.class);
             intent.putExtra(Utils.EXTRA_MOVIE_INTENT, movies);

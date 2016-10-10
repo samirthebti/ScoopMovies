@@ -91,6 +91,7 @@ public class DetailActivityFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null || !savedInstanceState.containsKey(Utils.PARC_MOVIE_TAG)) {
             if (Utils.isDetailTwoPanel(getActivity())) {
+                // TODO: 10/10/16 select the movie to be showing the first time app run  
                 Bundle bundle = getArguments();
                 mMovie = bundle.getParcelable("movie");
 
