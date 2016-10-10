@@ -2,7 +2,6 @@ package com.scoopmovies.thesam.scoopmovies;
 
 import android.app.ActivityOptions;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -31,6 +30,7 @@ import com.scoopmovies.thesam.scoopmovies.data.MovieDBContract.MovieEntry;
 import com.scoopmovies.thesam.scoopmovies.model.Movies;
 import com.scoopmovies.thesam.scoopmovies.network.ApiUtils;
 import com.scoopmovies.thesam.scoopmovies.network.VolleySing;
+import com.scoopmovies.thesam.scoopmovies.utils.Callback;
 import com.scoopmovies.thesam.scoopmovies.utils.ItemClickSupport;
 import com.scoopmovies.thesam.scoopmovies.utils.ItemClickSupport.OnItemClickListener;
 import com.scoopmovies.thesam.scoopmovies.utils.Utils;
@@ -175,19 +175,16 @@ public class MainActivityFragment extends Fragment {
         ItemClickSupport.addTo(mRecyclerView).setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                Intent selectedMovie = new Intent(getActivity(), DetailActivity.class);
-                selectedMovie.putExtra(Utils.EXTRA_MOVIE_INTENT, movies.get(position));
-                selectedMovie.putExtra(Utils.EXTRA_MOVIE_POSITION, position);
                 mCurrentPosition = position;
+
                 //setup the animation and lanche the intent
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                    selectedMovie.putExtra(Utils.EXTRA_MOVIE_POSITION, position);
                     ActivityOptions activityOptions = ActivityOptions
                             .makeSceneTransitionAnimation(getActivity(),
                                     new android.util.Pair<View, String>(v, Utils.SHARED_TRANSITION_NAME + position));
-                    startActivity(selectedMovie, activityOptions.toBundle());
+                    ((Callback) getActivity()).onMovieItemSelected(movies.get(position), position);
                 } else {
-                    startActivity(selectedMovie);
+                    ((Callback) getActivity()).onMovieItemSelected(movies.get(position),position);
                 }
             }
         });
@@ -314,4 +311,5 @@ public class MainActivityFragment extends Fragment {
         cursor.close();
         return myMovies;
     }
+
 }

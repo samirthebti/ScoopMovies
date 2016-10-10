@@ -13,8 +13,29 @@ public class DetailActivity extends AppCompatActivity {
     private Movies mMovie;
     private Bundle bundle;
     private Bundle bundle1;
+    private boolean mTwoPanel;
 
     public static final String DETAIL_FRAGMENT_TAG = "DTTAG";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_detail);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (savedInstanceState == null) {
+            DetailActivityFragment detailActivityFragment = new DetailActivityFragment();
+//            detailActivityFragment.setArguments(getIntent().getExtras());
+//            bundle = getIntent().getExtras();
+//            mMovie = bundle.getParcelable(Utils.EXTRA_MOVIE_INTENT);
+//            getSupportActionBar().setTitle(mMovie.getTitre());
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.details_container, detailActivityFragment, DETAIL_FRAGMENT_TAG)
+                    .commit();
+        }
+
+    }
 
     // on restore the instance of this activity wew will ensure the title in toolbar is loaded correctly
     @Override
@@ -31,24 +52,6 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        if (savedInstanceState == null) {
-            DetailActivityFragment detailActivityFragment = new DetailActivityFragment();
-//            detailActivityFragment.setArguments(getIntent().getExtras());
-            bundle = getIntent().getExtras();
-            mMovie = bundle.getParcelable(Utils.EXTRA_MOVIE_INTENT);
-            getSupportActionBar().setTitle(mMovie.getTitre());
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.details_container, detailActivityFragment, DETAIL_FRAGMENT_TAG)
-                    .commit();
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

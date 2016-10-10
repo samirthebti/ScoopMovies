@@ -31,12 +31,14 @@
                 />
         </android.support.design.widget.AppBarLayout>
 
-        <FrameLayout
+        <fragment
             android:id="@+id/container"
+            android:name="com.scoopmovies.thesam.scoopmovies.MainActivityFragment"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:Text="Eroor while fetching data"
+            tools:Text="Error while fetching data"
+            tools:context=".MainActivity"
             />
     </LinearLayout>
 

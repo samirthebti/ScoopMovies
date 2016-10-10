@@ -33,13 +33,16 @@
                 />
         </android.support.design.widget.AppBarLayout>
 
-        <FrameLayout
+        <fragment
             android:id="@+id/container"
+            android:name="com.scoopmovies.thesam.scoopmovies.MainActivityFragment"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="310dp"
             android:layout_height="match_parent"
             tools:Text="Eroor while fetching data"
             tools:background="@color/primary_light"
+            tools:context=".MainActivity"
+
             />
 
         <FrameLayout

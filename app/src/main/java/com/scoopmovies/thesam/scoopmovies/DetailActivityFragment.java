@@ -11,6 +11,7 @@ import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -61,6 +62,7 @@ import static com.scoopmovies.thesam.scoopmovies.network.ApiUtils.TAG_RESULTS;
  */
 public class DetailActivityFragment extends Fragment {
     public static final String TAG = DetailActivityFragment.class.getSimpleName();
+    public static final String DETAIL_TAG = "path";
     private Movies mMovie;
     private ImageView mCoverImageView;
     private TextView mTitle;
@@ -78,9 +80,35 @@ public class DetailActivityFragment extends Fragment {
     private ArrayList<Review> mReviews;
     private ArrayList<Video> mVideos;
     private VideosAdapter videoAdapter;
+    private boolean mTwoPanel;
 
     public DetailActivityFragment() {
         setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (savedInstanceState == null || !savedInstanceState.containsKey(Utils.PARC_MOVIE_TAG)) {
+            if (Utils.isDetailTwoPanel(getActivity())) {
+                Bundle bundle = getArguments();
+                mMovie = bundle.getParcelable("movie");
+
+            } else {
+                Intent intent = getActivity().getIntent();
+                mMovie = intent.getParcelableExtra(Utils.EXTRA_MOVIE_INTENT);
+            }
+            if (mMovie != null) {
+                mReviews = getReview(getActivity(), mMovie.getId());
+                mVideos = getVideos(getActivity(), mMovie.getId());
+            }
+
+        } else if (savedInstanceState != null && savedInstanceState.containsKey(Utils.PARC_MOVIE_TAG)) {
+            mMovie = savedInstanceState.getParcelable(Utils.PARC_MOVIE_TAG);
+            mReviews = savedInstanceState.getParcelableArrayList(Utils.PARC_REVIEWS_TAG);
+            mVideos = savedInstanceState.getParcelableArrayList(Utils.PARC_VIDEOS_TAG);
+        }
+
     }
 
     @Override
@@ -91,23 +119,26 @@ public class DetailActivityFragment extends Fragment {
         outState.putParcelableArrayList(Utils.PARC_VIDEOS_TAG, (ArrayList<? extends Parcelable>) mVideos);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (Utils.isDetailTwoPanel(getActivity())) {
+            Bundle bundle = getArguments();
+            mMovie = bundle.getParcelable("movie");
+
+        } else {
+            Intent intent = getActivity().getIntent();
+            mMovie = intent.getParcelableExtra(Utils.EXTRA_MOVIE_INTENT);
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
-
-        if (savedInstanceState == null || !savedInstanceState.containsKey(Utils.PARC_MOVIE_TAG)) {
-            Intent intent = getActivity().getIntent();
-            mMovie = intent.getParcelableExtra(Utils.EXTRA_MOVIE_INTENT);
-            mReviews = getReview(getActivity(), mMovie.getId());
-            mVideos = getVideos(getActivity(), mMovie.getId());
-
-        } else if (savedInstanceState != null && savedInstanceState.containsKey(Utils.PARC_MOVIE_TAG)) {
-            mMovie = savedInstanceState.getParcelable(Utils.PARC_MOVIE_TAG);
-            mReviews = savedInstanceState.getParcelableArrayList(Utils.PARC_REVIEWS_TAG);
-            mVideos = savedInstanceState.getParcelableArrayList(Utils.PARC_VIDEOS_TAG);
-        }
+        mCoverImageView = (ImageView) rootView.findViewById(R.id.movie_detail_poster);
+        mReviewRecycleView = (RecyclerView) rootView.findViewById(R.id.reviews);
+        mVideoRecycleView = (RecyclerView) rootView.findViewById(R.id.trailler);
 
         add = (FloatingActionButton) rootView.findViewById(R.id.addtofavorite);
         mFavorite = isFaorite(mMovie);
@@ -145,7 +176,7 @@ public class DetailActivityFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         moviePosition = getActivity().getIntent().getIntExtra(Utils.EXTRA_MOVIE_POSITION, 0);
-        mCoverImageView = (ImageView) view.findViewById(R.id.movie_detail_poster);
+
         if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
             mCoverImageView.setTransitionName(
                     Utils.SHARED_TRANSITION_NAME + moviePosition);
@@ -153,8 +184,7 @@ public class DetailActivityFragment extends Fragment {
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         //Review & videos Recycler settings
-        mReviewRecycleView = (RecyclerView) view.findViewById(R.id.reviews);
-        mVideoRecycleView = (RecyclerView) view.findViewById(R.id.trailler);
+
 
         reviewAdapter = new ReviewAdapter(getActivity(), mReviews);
         videoAdapter = new VideosAdapter(getActivity(), mVideos);
@@ -173,7 +203,6 @@ public class DetailActivityFragment extends Fragment {
         ItemClickSupport.addTo(mVideoRecycleView).setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-
             }
         });
 
@@ -356,17 +385,17 @@ public class DetailActivityFragment extends Fragment {
 
     private boolean isFaorite(Movies movie) {
         boolean test = false;
-        Cursor cursor = getContext().getContentResolver().query(
-                MovieEntry.CONTENT_URI,
-                new String[] {MovieEntry.COLUMN_ID},
-                MovieEntry.COLUMN_ID + "=? ",
-                new String[] {movie.getId()}, null);
-        if (cursor != null && cursor.getCount() > 0) {
-            test = true;
+        if (movie != null) {
+            Cursor cursor = getContext().getContentResolver().query(
+                    MovieEntry.CONTENT_URI,
+                    new String[] {MovieEntry.COLUMN_ID},
+                    MovieEntry.COLUMN_ID + "=? ",
+                    new String[] {movie.getId()}, null);
+            if (cursor != null && cursor.getCount() > 0) {
+                test = true;
+            }
+            cursor.close();
         }
-        cursor.close();
         return test;
     }
-
-
 }

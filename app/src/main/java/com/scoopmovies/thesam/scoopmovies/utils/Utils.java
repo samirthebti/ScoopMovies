@@ -1,10 +1,12 @@
 package com.scoopmovies.thesam.scoopmovies.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
+import com.scoopmovies.thesam.scoopmovies.R;
 import com.scoopmovies.thesam.scoopmovies.model.Video;
 
 /**
@@ -20,7 +22,8 @@ public class Utils {
     public static final String FAVORITE = "favorite";
     public static final String PARC_MOVIES_TAG = "movies";
     public static final String PARC_REVIEWS_TAG = "reviews";
-    public static final String PARC_VIDEOS_TAG = "reviews";
+    public static final String PARC_VIDEOS_TAG = "videos";
+    public static final String DETAILS_FRAGMENT_TAG = "DFTAG";
 
     public static final String PARC_MOVIE_TAG = "movie";
     public static final String PARC_REVIEW_TAG = "review";
@@ -65,6 +68,26 @@ public class Utils {
         } else {
             throw new UnsupportedOperationException("Only YouTube is supported!");
         }
+    }
+
+    public static boolean isDetailTwoPanel(Activity context) {
+        boolean b;
+        if (context.findViewById(R.id.container) == null) {
+            b = false;
+        } else {
+            b = true;
+        }
+        return b;
+    }
+
+    public static boolean ismainTwoPanel(Activity context) {
+        boolean b;
+        if (context.findViewById(R.id.details_container) == null) {
+            b = false;
+        } else {
+            b = true;
+        }
+        return b;
     }
 
 

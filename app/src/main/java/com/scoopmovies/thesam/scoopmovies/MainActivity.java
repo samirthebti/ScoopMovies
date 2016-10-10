@@ -1,6 +1,8 @@
 package com.scoopmovies.thesam.scoopmovies;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -9,10 +11,13 @@ import android.view.MenuItem;
 
 import com.crashlytics.android.Crashlytics;
 import com.facebook.stetho.Stetho;
+import com.scoopmovies.thesam.scoopmovies.model.Movies;
+import com.scoopmovies.thesam.scoopmovies.utils.Callback;
+import com.scoopmovies.thesam.scoopmovies.utils.Utils;
 
 import io.fabric.sdk.android.Fabric;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Callback {
     public static final String TAG = MainActivity.class.getSimpleName();
     private boolean mTwoPanel;
     public static final String DETAILS_FRAGMENT_TAG = "DFTAG";
@@ -24,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (findViewById(R.id.details_container) != null) {
+            mTwoPanel = true;
             if (savedInstanceState == null) {
-                mTwoPanel = true;
                 Log.d(TAG, "onCreate: ");
                 getSupportFragmentManager()
                         .beginTransaction()
@@ -35,10 +40,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             mTwoPanel = false;
         }
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.container, new MainActivityFragment())
-                .commit();
+
         Stetho.initializeWithDefaults(this);
         Fabric.with(this, new Crashlytics());
 
@@ -58,5 +60,24 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onMovieItemSelected(Movies movies, int position) {
+        if (mTwoPanel) {
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("movie", movies);
+            DetailActivityFragment detailActivityFragment = new DetailActivityFragment();
+            detailActivityFragment.setArguments(bundle);
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.details_container, detailActivityFragment, DETAILS_FRAGMENT_TAG);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+        } else {
+            Intent intent = new Intent(this, DetailActivity.class);
+            intent.putExtra(Utils.EXTRA_MOVIE_INTENT, movies);
+            intent.putExtra(Utils.EXTRA_MOVIE_POSITION, position);
+            startActivity(intent);
+        }
     }
 }
