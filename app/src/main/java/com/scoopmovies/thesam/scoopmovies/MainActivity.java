@@ -31,20 +31,16 @@ public class MainActivity extends AppCompatActivity implements Callback {
         setSupportActionBar(toolbar);
         if (findViewById(R.id.details_container) != null) {
             mTwoPanel = true;
-
         } else {
             mTwoPanel = false;
         }
-
-//        Stetho.initializeWithDefaults(this);
         Fabric.with(this, new Crashlytics());
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        if (mTwoPanel != true) {
+        if (!mTwoPanel) {
             getMenuInflater().inflate(R.menu.menu_main, menu);
         } else {
             getMenuInflater().inflate(R.menu.menu_two_pane_layout, menu);
@@ -84,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements Callback {
             if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN) {
                 startActivity(intent, activityOptions.toBundle());
             } else {
-                startActivity(intent, activityOptions.toBundle());
+                startActivity(intent);
             }
         }
     }

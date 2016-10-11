@@ -52,6 +52,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
+
 
 import static com.scoopmovies.thesam.scoopmovies.network.ApiUtils.TAG_RESULTS;
 
@@ -195,9 +197,8 @@ public class DetailActivityFragment extends Fragment {
         mReviewRecycleView.setHasFixedSize(true);
         mVideoRecycleView.setHasFixedSize(true);
 
-        mReviewRecycleView.setAdapter(reviewAdapter);
-        mVideoRecycleView.setAdapter(videoAdapter);
-
+        mReviewRecycleView.setAdapter(new SlideInBottomAnimationAdapter(reviewAdapter));
+        mVideoRecycleView.setAdapter(new SlideInBottomAnimationAdapter(videoAdapter));
         add.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {

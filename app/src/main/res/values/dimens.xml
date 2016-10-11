@@ -20,4 +20,5 @@
     <dimen name="play_image_size">60dp</dimen>
     <dimen name="revies_items_padding">4dp</dimen>
     <dimen name="titel_movie_mainscreen">16sp</dimen>
+    <dimen name="review_textview">18sp</dimen>
 </resources>

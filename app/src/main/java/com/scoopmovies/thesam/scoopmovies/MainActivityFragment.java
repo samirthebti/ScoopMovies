@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -65,7 +66,6 @@ public class MainActivityFragment extends Fragment {
     private SharedPreferences sharedPref;
     private int mCurrentPosition;
 
-
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -101,8 +101,6 @@ public class MainActivityFragment extends Fragment {
         SharedPreferences.Editor editor1 = sharedPref.edit();
         editor1.putInt(getString(R.string.positionpref), mCurrentPosition);
         editor1.apply();
-
-
     }
 
     @Override
@@ -114,7 +112,6 @@ public class MainActivityFragment extends Fragment {
         SharedPreferences.Editor editor1 = sharedPref.edit();
         editor1.putInt(getString(R.string.positionpref), mCurrentPosition);
         editor1.apply();
-
     }
 
     public MainActivityFragment() {
@@ -126,6 +123,11 @@ public class MainActivityFragment extends Fragment {
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mRecyclerView.smoothScrollToPosition(mCurrentPosition);
+        if (getActivity().findViewById(R.id.details_container) != null) {
+            if (Utils.isMainTwoPanel(getActivity())) {
+                ((Callback) getActivity()).onMovieItemSelected(movies.get(0), 0, null);
+            }
+        }
     }
 
 
@@ -143,15 +145,12 @@ public class MainActivityFragment extends Fragment {
             editor.putInt(getString(R.string.positionpref), 1);
             editor.apply();
         }
-
-
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         final View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         mCurentSortby = sharedPref.getString(getString(R.string.sharedpref), POPULAR);
         mCurrentPosition = sharedPref.getInt(getString(R.string.positionpref), 1);
@@ -205,38 +204,34 @@ public class MainActivityFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        Log.d(LOG_TAG, "onOptionsItemSelected: ");
         if (id == R.id.toprated_menu_item) {
             mChoix = Utils.TOP_RATED;
             if (!mCurentSortby.equals(mChoix)) {
                 movies.clear();
-
                 movies = getMovies(getActivity(), mChoix);
                 mGridAdapter.notifyDataSetChanged();
-
                 mRecyclerView.getRecycledViewPool().clear();
                 mCurentSortby = mChoix;
+
             }
-        }
-        if (id == R.id.popular_menu_item) {
+
+        } else if (id == R.id.popular_menu_item) {
             mChoix = Utils.POPULAR;
             if (!mCurentSortby.equals(mChoix)) {
                 movies.clear();
-
                 movies = getMovies(getActivity(), mChoix);
                 mGridAdapter.notifyDataSetChanged();
-
                 mRecyclerView.getRecycledViewPool().clear();
                 mCurentSortby = mChoix;
             }
-        }
-        if (id == R.id.favorite_menu_item) {
+
+        } else if (id == R.id.favorite_menu_item) {
             mChoix = Utils.FAVORITE;
             if (!mCurentSortby.equals(mChoix)) {
                 movies.clear();
-
                 movies = getFavorit();
                 mGridAdapter.notifyDataSetChanged();
-
                 mRecyclerView.getRecycledViewPool().clear();
                 mCurentSortby = mChoix;
             }
@@ -279,14 +274,6 @@ public class MainActivityFragment extends Fragment {
                             }
                         }
                         mGridAdapter.notifyDataSetChanged();
-                        if (getActivity().findViewById(R.id.details_container) != null) {
-                            if (Utils.isMainTwoPanel(getActivity())) {
-                                if (myMovies != null) {
-                                    ((Callback) getActivity()).onMovieItemSelected(myMovies.get(0), 0, null);
-                                }
-                            }
-                        }
-
                     }
                 }, new ErrorListener() {
                     @Override
@@ -298,8 +285,6 @@ public class MainActivityFragment extends Fragment {
         // Access the RequestQueue through your singleton class. the context of  fragment is geted
         // by call getActivity() methode
         VolleySing.getInstance(context).addToRequestQueue(mJsObjRequest);
-
-
         return myMovies;
     }
 

@@ -100,10 +100,10 @@
                 android:layout_below="@id/trailler"
                 android:clickable="true"
                 android:focusable="true"
-                android:padding="@dimen/general_padding"
+                android:padding="@dimen/detail_layout_margin"
                 android:text="@string/reviews"
                 android:textColor="@color/accent"
-                android:textSize="18sp"
+                android:textSize="@dimen/review_textview"
                 android:visibility="visible"
                 />
 
@@ -114,7 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/review_textView"
-                android:layout_margin="@dimen/general_padding"
+                android:layout_margin="@dimen/detail_layout_margin"
                 android:background="?android:selectableItemBackground"
                 android:foreground="?android:attr/selectableItemBackground"
                 tools:clickable="true"
