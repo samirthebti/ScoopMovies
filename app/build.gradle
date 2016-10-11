@@ -20,7 +20,7 @@ android {
     buildToolsVersion "24.0.2"
     defaultConfig {
         applicationId "com.scoopmovies.thesam.scoopmovies"
-        minSdkVersion 11
+        minSdkVersion 14
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
@@ -49,6 +49,8 @@ dependencies {
     compile 'jp.wasabeef:recyclerview-animators:2.2.4'
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:design:24.2.1'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.github.michael-rapp:android-material-dialog:3.6.10'
     compile 'com.android.support:support-v4:24.2.1'
     compile 'com.android.support:palette-v7:24.2.1'
     compile 'com.android.support:recyclerview-v7:24.2.1'

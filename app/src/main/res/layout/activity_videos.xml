@@ -18,8 +18,8 @@
             android:id="@+id/videoimageview"
             android:layout_width="@dimen/video_width"
             android:layout_height="@dimen/video_width"
+            android:adjustViewBounds="true"
             android:clickable="true"
-            android:focusable="true"
             />
     </FrameLayout>
 </android.support.v7.widget.CardView>

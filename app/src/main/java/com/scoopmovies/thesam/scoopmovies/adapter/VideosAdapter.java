@@ -8,12 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.scoopmovies.thesam.scoopmovies.R;
 import com.scoopmovies.thesam.scoopmovies.adapter.VideosAdapter.VideoHolder;
 import com.scoopmovies.thesam.scoopmovies.model.Video;
 import com.scoopmovies.thesam.scoopmovies.utils.Utils;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -43,16 +42,11 @@ public class VideosAdapter extends RecyclerView.Adapter<VideoHolder> {
     @Override
     public void onBindViewHolder(VideoHolder holder, int position) {
         Video video = mVideos.get(position);
-        try {
-            Glide.with(mContext).load(Utils.getThumbnailUrl(video))
-                    .override(R.dimen.video_width, R.dimen.video_height)
-                    .fitCenter()
-//                .error(R.drawable.posternotfound)
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .into(holder.videoImageView);
-        } catch (Exception e) {
-            Log.e(TAG, "onBindViewHolder: " + e);
-        }
+//        Glide failed to load the videos image
+        Picasso.with(mContext)
+                .load(Utils.getThumbnailUrl(video))
+                .into(holder.videoImageView);
+
 
         Log.d(TAG, "onBindViewHolder: " + Utils.getThumbnailUrl(video));
     }

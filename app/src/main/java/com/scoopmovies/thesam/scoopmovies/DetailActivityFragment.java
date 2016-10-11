@@ -44,8 +44,6 @@ import com.scoopmovies.thesam.scoopmovies.model.Review;
 import com.scoopmovies.thesam.scoopmovies.model.Video;
 import com.scoopmovies.thesam.scoopmovies.network.ApiUtils;
 import com.scoopmovies.thesam.scoopmovies.network.VolleySing;
-import com.scoopmovies.thesam.scoopmovies.utils.ItemClickSupport;
-import com.scoopmovies.thesam.scoopmovies.utils.ItemClickSupport.OnItemClickListener;
 import com.scoopmovies.thesam.scoopmovies.utils.Utils;
 
 import org.json.JSONArray;
@@ -140,6 +138,23 @@ public class DetailActivityFragment extends Fragment {
         mCoverImageView = (ImageView) rootView.findViewById(R.id.movie_detail_poster);
         mReviewRecycleView = (RecyclerView) rootView.findViewById(R.id.reviews);
         mVideoRecycleView = (RecyclerView) rootView.findViewById(R.id.trailler);
+        LinearLayoutManager layoutManager
+                = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        //Review & videos RecyclerView settings
+
+        reviewAdapter = new ReviewAdapter(getActivity(), mReviews);
+        videoAdapter = new VideosAdapter(getActivity(), mVideos);
+        mReviewRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mVideoRecycleView.setLayoutManager(layoutManager);
+        mVideoRecycleView.setNestedScrollingEnabled(false);
+        mReviewRecycleView.setNestedScrollingEnabled(false);
+        reviewAdapter.notifyDataSetChanged();
+        videoAdapter.notifyDataSetChanged();
+        mReviewRecycleView.setHasFixedSize(true);
+        mVideoRecycleView.setHasFixedSize(true);
+        mReviewRecycleView.setAdapter(reviewAdapter);
+        mVideoRecycleView.setAdapter(videoAdapter);
+
 
         add = (FloatingActionButton) rootView.findViewById(R.id.addtofavorite);
         mFavorite = isFaorite(mMovie);
@@ -170,6 +185,20 @@ public class DetailActivityFragment extends Fragment {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(mPoster);
 
+//        ItemClickSupport.addTo(mReviewRecycleView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+//            @Override
+//            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+//                Log.d(TAG, "onItemClicked: " + mReviews.get(position).toString());
+//                MaterialDialog.Builder dialogBuilder = new MaterialDialog.Builder(getActivity().getApplicationContext(), R.style.MaterialDialog_Light);
+//                dialogBuilder.setTitle(mReviews.get(position).getAuthor());
+//                dialogBuilder.setMessage(mReviews.get(position).getContent());
+//                dialogBuilder.setTitle(mReviews.get(position).getAuthor());
+//                dialogBuilder.setPositiveButton(android.R.string.ok, null);
+//                dialogBuilder.setNegativeButton(android.R.string.cancel, null);
+//                MaterialDialog dialog = dialogBuilder.create();
+//                dialog.show();
+//            }
+//        });
         return rootView;
     }
 
@@ -182,30 +211,7 @@ public class DetailActivityFragment extends Fragment {
             mCoverImageView.setTransitionName(
                     Utils.SHARED_TRANSITION_NAME + moviePosition);
         }
-        LinearLayoutManager layoutManager
-                = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        //Review & videos Recycler settings
 
-
-        reviewAdapter = new ReviewAdapter(getActivity(), mReviews);
-        videoAdapter = new VideosAdapter(getActivity(), mVideos);
-
-        mReviewRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mVideoRecycleView.setLayoutManager(layoutManager);
-        mVideoRecycleView.getRecycledViewPool().clear();
-        mReviewRecycleView.getRecycledViewPool().clear();
-        reviewAdapter.notifyDataSetChanged();
-        videoAdapter.notifyDataSetChanged();
-        mReviewRecycleView.setHasFixedSize(true);
-        mVideoRecycleView.setHasFixedSize(true);
-        mReviewRecycleView.setAdapter(reviewAdapter);
-        mVideoRecycleView.setAdapter(videoAdapter);
-
-        ItemClickSupport.addTo(mVideoRecycleView).setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-            }
-        });
 
         add.setOnClickListener(new OnClickListener() {
             @Override
@@ -213,11 +219,8 @@ public class DetailActivityFragment extends Fragment {
                 if (mMovie != null) {
                     addToFavorite(mMovie);
                 }
-
             }
         });
-
-
     }
 
     public void actionShare(String content) {

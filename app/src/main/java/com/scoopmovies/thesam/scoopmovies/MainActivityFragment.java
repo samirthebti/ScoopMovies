@@ -95,7 +95,6 @@ public class MainActivityFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(getString(R.string.sharedpref), mCurentSortby);
         editor.apply();
@@ -182,6 +181,7 @@ public class MainActivityFragment extends Fragment {
                     ActivityOptions activityOptions = ActivityOptions
                             .makeSceneTransitionAnimation(getActivity(),
                                     new android.util.Pair<View, String>(v, Utils.SHARED_TRANSITION_NAME + position));
+                    activityOptions.toBundle();
                     ((Callback) getActivity()).onMovieItemSelected(movies.get(position), position);
                 } else {
                     ((Callback) getActivity()).onMovieItemSelected(movies.get(position), position);

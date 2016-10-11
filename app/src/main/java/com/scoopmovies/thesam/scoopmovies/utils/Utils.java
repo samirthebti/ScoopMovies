@@ -48,7 +48,7 @@ public class Utils {
      * @param video
      * @return
      */
-    public static String getThumbnailUrl(@NonNull Video video) {
+    public final static String getThumbnailUrl(@NonNull Video video) {
         if (SITE_YOUTUBE.equals(video.getSite())) {
             return String.format("http://img.youtube.com/vi/%1$s/0.jpg", video.getKey());
         } else {

@@ -1,21 +1,6 @@
 package com.scoopmovies.thesam.scoopmovies.network;
 
-import android.content.Context;
 import android.net.Uri;
-import android.widget.Toast;
-
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.scoopmovies.thesam.scoopmovies.adapter.ReviewAdapter;
-import com.scoopmovies.thesam.scoopmovies.model.Review;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 
 /**

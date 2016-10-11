@@ -114,6 +114,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/trailler"
+                android:clickable="true"
+                android:focusable="true"
                 android:padding="@dimen/general_padding"
                 android:text="@string/reviews"
                 android:textColor="@color/accent"
