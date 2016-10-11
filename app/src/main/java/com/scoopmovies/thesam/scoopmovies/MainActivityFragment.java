@@ -128,6 +128,7 @@ public class MainActivityFragment extends Fragment {
         mRecyclerView.smoothScrollToPosition(mCurrentPosition);
     }
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -278,6 +279,11 @@ public class MainActivityFragment extends Fragment {
                             }
                         }
                         mGridAdapter.notifyDataSetChanged();
+                        if (Utils.isMainTwoPanel(getActivity())) {
+                            if (myMovies != null) {
+                                ((Callback) getActivity()).onMovieItemSelected(myMovies.get(0), 0);
+                            }
+                        }
 //                        Toast.makeText(context, myMovies.toString(), Toast.LENGTH_LONG).show();
 
                     }
