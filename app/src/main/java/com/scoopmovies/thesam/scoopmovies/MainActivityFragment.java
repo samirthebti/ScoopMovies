@@ -192,10 +192,10 @@ public class MainActivityFragment extends Fragment {
                     ActivityOptions activityOptions = ActivityOptions
                             .makeSceneTransitionAnimation(getActivity(),
                                     new android.util.Pair<View, String>(v, Utils.SHARED_TRANSITION_NAME + position));
-                    activityOptions.toBundle();
-                    ((Callback) getActivity()).onMovieItemSelected(movies.get(position), position);
+
+                    ((Callback) getActivity()).onMovieItemSelected(movies.get(position), position, activityOptions);
                 } else {
-                    ((Callback) getActivity()).onMovieItemSelected(movies.get(position), position);
+                    ((Callback) getActivity()).onMovieItemSelected(movies.get(position), position, null);
                 }
             }
         });
@@ -279,12 +279,13 @@ public class MainActivityFragment extends Fragment {
                             }
                         }
                         mGridAdapter.notifyDataSetChanged();
-                        if (Utils.isMainTwoPanel(getActivity())) {
-                            if (myMovies != null) {
-                                ((Callback) getActivity()).onMovieItemSelected(myMovies.get(0), 0);
+                        if (getActivity().findViewById(R.id.details_container) != null) {
+                            if (Utils.isMainTwoPanel(getActivity())) {
+                                if (myMovies != null) {
+                                    ((Callback) getActivity()).onMovieItemSelected(myMovies.get(0), 0, null);
+                                }
                             }
                         }
-//                        Toast.makeText(context, myMovies.toString(), Toast.LENGTH_LONG).show();
 
                     }
                 }, new ErrorListener() {

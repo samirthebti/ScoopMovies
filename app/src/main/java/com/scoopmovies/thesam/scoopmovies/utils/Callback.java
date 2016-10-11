@@ -1,5 +1,8 @@
 package com.scoopmovies.thesam.scoopmovies.utils;
 
+import android.app.ActivityOptions;
+import android.support.annotation.Nullable;
+
 import com.scoopmovies.thesam.scoopmovies.model.Movies;
 
 /**
@@ -11,6 +14,6 @@ import com.scoopmovies.thesam.scoopmovies.model.Movies;
  * Interface fot handler Movie Click item
  */
 public interface Callback {
-    public void onMovieItemSelected(Movies movies , int position);
+    public void onMovieItemSelected(Movies movies, int position, @Nullable ActivityOptions activityOptions);
 
 }
