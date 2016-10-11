@@ -25,7 +25,6 @@ import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.bumptech.glide.Glide;
 import com.scoopmovies.thesam.scoopmovies.adapter.GridAdapter;
 import com.scoopmovies.thesam.scoopmovies.data.MovieDBContract.MovieEntry;
 import com.scoopmovies.thesam.scoopmovies.model.Movies;
@@ -153,7 +152,7 @@ public class MainActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        Glide.clear(rootView);
+
         mCurentSortby = sharedPref.getString(getString(R.string.sharedpref), POPULAR);
         mCurrentPosition = sharedPref.getInt(getString(R.string.positionpref), 1);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
@@ -305,6 +304,7 @@ public class MainActivityFragment extends Fragment {
             myMovies.add(movie);
         }
         cursor.close();
+
         return myMovies;
     }
 
