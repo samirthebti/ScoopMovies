@@ -16,10 +16,26 @@
 
         <ImageView
             android:id="@+id/videoimageview"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="@dimen/video_width"
             android:layout_height="@dimen/video_width"
+            android:layout_marginRight="@dimen/cardview_default_elevation"
             android:adjustViewBounds="true"
             android:clickable="true"
+            tools:layout_marginRight="?android:attr/previewImage"
             />
+
+        <ImageView
+            android:id="@+id/VideoPreviewPlayButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:paddingBottom="10dp"
+            android:src="@drawable/ic_play_circle"
+            android:visibility="visible"
+            />
+
+
     </FrameLayout>
 </android.support.v7.widget.CardView>

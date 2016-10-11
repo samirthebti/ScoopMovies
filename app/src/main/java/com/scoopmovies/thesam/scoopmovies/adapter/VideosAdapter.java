@@ -46,8 +46,6 @@ public class VideosAdapter extends RecyclerView.Adapter<VideoHolder> {
         Picasso.with(mContext)
                 .load(Utils.getThumbnailUrl(video))
                 .into(holder.videoImageView);
-
-
         Log.d(TAG, "onBindViewHolder: " + Utils.getThumbnailUrl(video));
     }
 
