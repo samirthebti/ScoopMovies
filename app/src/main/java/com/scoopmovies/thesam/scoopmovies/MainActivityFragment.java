@@ -54,7 +54,7 @@ import static com.scoopmovies.thesam.scoopmovies.utils.Utils.POPULAR;
  */
 public class MainActivityFragment extends Fragment {
     public static final String LOG_TAG = MainActivityFragment.class.getSimpleName();
-    public static final String LOG_MOVIES = "movies";
+
 
     private ArrayList<Movies> movies;
     private RecyclerView mRecyclerView;

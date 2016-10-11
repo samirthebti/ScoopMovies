@@ -57,20 +57,6 @@ public class Utils {
         }
     }
 
-    /**
-     * get the url of the Video for share acction in details screen
-     *
-     * @param video
-     * @return
-     */
-    public static String getUrl(@NonNull Video video) {
-        if (SITE_YOUTUBE.equals(video.getSite())) {
-            return String.format("http://www.youtube.com/watch?v=%1$s", video.getId());
-        } else {
-            throw new UnsupportedOperationException("Only YouTube is supported!");
-        }
-    }
-
     public static boolean isDetailTwoPanel(Activity context) {
         boolean b;
         if (context.findViewById(R.id.container) == null) {

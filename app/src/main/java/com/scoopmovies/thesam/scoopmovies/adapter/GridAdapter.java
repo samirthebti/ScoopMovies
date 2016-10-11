@@ -35,19 +35,15 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         public ImageView posterImage;
         public TextView title;
 
-
         public ViewHolder(View v) {
             super(v);
             posterImage = (ImageView) v.findViewById(R.id.poster);
             title = (TextView) v.findViewById(R.id.title);
         }
-
-
     }
 
     public GridAdapter(Context mContext, int actualPosterViewWidth) {
         this.mContext = mContext;
-
         mPosterWidth = actualPosterViewWidth;
         mPosterHeight = (int) (actualPosterViewWidth / Utils.TMDB_POSTER_SIZE_RATIO);
     }
@@ -84,6 +80,4 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
     public int getItemCount() {
         return mMovies.size();
     }
-
-
 }

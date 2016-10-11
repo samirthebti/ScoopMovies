@@ -80,7 +80,7 @@ public class DetailActivityFragment extends Fragment {
     private ArrayList<Review> mReviews;
     private ArrayList<Video> mVideos;
     private VideosAdapter videoAdapter;
-    private boolean mTwoPanel;
+
 
     public DetailActivityFragment() {
         setHasOptionsMenu(true);
@@ -91,7 +91,7 @@ public class DetailActivityFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null || !savedInstanceState.containsKey(Utils.PARC_MOVIE_TAG)) {
             if (Utils.isDetailTwoPanel(getActivity())) {
-                // TODO: 10/10/16 select the movie to be showing the first time app run  
+                // TODO: feat : 10/10/16 select the movie to be showing the first time app run
                 Bundle bundle = getArguments();
                 mMovie = bundle.getParcelable("movie");
 

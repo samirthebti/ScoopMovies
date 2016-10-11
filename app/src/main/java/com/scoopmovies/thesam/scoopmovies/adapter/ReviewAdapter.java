@@ -53,10 +53,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.PlaceHolde
                         .show();
             }
         });
-
     }
-
-
     @Override
     public int getItemCount() {
         return mReviews.size();
@@ -70,10 +67,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.PlaceHolde
             super(itemView);
             reviewAuthor = (TextView) itemView.findViewById(R.id.review_author);
             reviewContent = (TextView) itemView.findViewById(R.id.review_content);
-
-
         }
-
-
     }
 }

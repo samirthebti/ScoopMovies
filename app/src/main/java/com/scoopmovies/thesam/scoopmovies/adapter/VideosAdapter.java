@@ -55,10 +55,7 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoHolde
                 mContext.startActivity(new Intent(Intent.ACTION_VIEW, uri));
             }
         });
-
-
     }
-
 
     @Override
     public int getItemCount() {
@@ -75,8 +72,6 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoHolde
             playImageView = (ImageView) itemView.findViewById(R.id.VideoPreviewPlayButton);
             frameLayout = (FrameLayout) itemView.findViewById(R.id.videoitem);
             videoImageView = (ImageView) itemView.findViewById(R.id.videoimageview);
-
-
         }
 
     }

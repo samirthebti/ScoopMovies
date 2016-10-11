@@ -17,17 +17,12 @@ public class MovieDBContract {
     public static final String MOVIE_PATH = "movie";
 
 
-    public static final String PATH_MOVIE = "movie";
-    public static final String PATH_REVIEW = "review";
-    public static final String PATH_video = "video";
-
     public static final class MovieEntry implements BaseColumns {
         public static final Uri CONTENT_URI = BASE_CONTENT_URL.buildUpon().appendPath(MOVIE_PATH).build();
         public static final String CONTEN_TYPE =
                 ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + MOVIE_PATH;
         public static final String CONTEN_TYPE_ITEM =
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + MOVIE_PATH;
-
         public static final String TABLE_NAME = "movie";
         public static final String COLUMN_ID = "id";
         public static final String COLUMN_TITLE = "titre";
@@ -44,22 +39,4 @@ public class MovieDBContract {
             return CONTENT_URI.buildUpon().appendPath(id).build();
         }
     }
-
-
-    public class ReviewEntry implements BaseColumns {
-        public static final String TABLE_NAME = "review";
-        public static final String COLUMN_ID = "id";
-        public static final String COLUMN_AUTHOR = "author";
-        public static final String COLUMN_CONTENT = "content";
-    }
-
-    public class VideoEntry implements BaseColumns {
-        public static final String TABLE_NAME = "video";
-        public static final String COLUMN_ID = "id";
-        public static final String COLUMN_KEY = "key";
-        public static final String COLUMN_NAME = "name";
-        public static final String COLUMN_SITE = "site";
-    }
-
-
 }
