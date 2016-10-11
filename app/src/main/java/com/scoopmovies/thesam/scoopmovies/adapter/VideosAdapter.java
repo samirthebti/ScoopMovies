@@ -1,8 +1,9 @@
 package com.scoopmovies.thesam.scoopmovies.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -42,7 +43,7 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoHolde
 
     @Override
     public void onBindViewHolder(VideoHolder holder, int position) {
-        Video video = mVideos.get(position);
+        final Video video = mVideos.get(position);
         //Glide failed to load the videos image
         Picasso.with(mContext)
                 .load(Utils.getThumbnailUrl(video))
@@ -50,8 +51,8 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoHolde
         holder.playImageView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "onClick: ");
-                // TODO: 11/10/16 launch the play youtube action here 
+                Uri uri = Uri.parse(Utils.YOUTUBE_PLAY_URL_BASE + video.getKey());
+                mContext.startActivity(new Intent(Intent.ACTION_VIEW, uri));
             }
         });
 

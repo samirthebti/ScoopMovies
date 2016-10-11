@@ -34,6 +34,7 @@ public class Utils {
     public static final String EXTRA_MOVIE_INTENT = "mMovie";
     public static final String SORTBY_PREF = "pref";
     private static final String SITE_YOUTUBE = "YouTube";
+    public static final String YOUTUBE_PLAY_URL_BASE = "https://www.youtube.com/watch?v=";
 
     public static int getScreenWidth(@NonNull Context context) {
         DisplayMetrics displayMetrics = new DisplayMetrics();
