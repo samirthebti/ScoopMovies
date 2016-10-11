@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="false"
+
     >
 
     <android.support.v4.widget.NestedScrollView
@@ -50,7 +51,7 @@
                 android:layout_below="@id/movie_detail_poster"
                 android:layout_marginLeft="@dimen/general_padding"
                 android:layout_marginRight="@dimen/general_padding"
-                android:layout_marginTop="@dimen/chip_horizontal_padding"
+                android:layout_marginTop="@dimen/general_padding"
                 android:background="@drawable/rippel"
                 android:clickable="true"
                 android:padding="@dimen/cardview_default_elevation"
@@ -86,12 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/trailler_textView"
-                android:background="?android:selectableItemBackground"
-                android:foreground="?android:attr/selectableItemBackground"
                 android:orientation="horizontal"
-                tools:clickable="true"
-                tools:focusable="true"
-
                 />
 
 

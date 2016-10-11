@@ -9,9 +9,13 @@
     L
 
     <FrameLayout
+        android:id="@+id/videoitem"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
+        tools:clickable="true"
         >
 
         <ImageView
@@ -21,19 +25,24 @@
             android:layout_height="@dimen/video_width"
             android:layout_marginRight="@dimen/cardview_default_elevation"
             android:adjustViewBounds="true"
-            android:clickable="true"
+            android:visibility="visible"
+            tools:clickable="true"
             tools:layout_marginRight="?android:attr/previewImage"
             />
 
         <ImageView
             android:id="@+id/VideoPreviewPlayButton"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
             android:clickable="true"
             android:paddingBottom="10dp"
             android:src="@drawable/ic_play_circle"
+
             android:visibility="visible"
+            tools:clickable="true"
             />
 
 

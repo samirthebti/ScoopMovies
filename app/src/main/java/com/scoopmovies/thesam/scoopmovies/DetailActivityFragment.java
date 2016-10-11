@@ -139,7 +139,7 @@ public class DetailActivityFragment extends Fragment {
         mReviewRecycleView = (RecyclerView) rootView.findViewById(R.id.reviews);
         mVideoRecycleView = (RecyclerView) rootView.findViewById(R.id.trailler);
         LinearLayoutManager layoutManager
-                = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+                = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         //Review & videos RecyclerView settings
 
         reviewAdapter = new ReviewAdapter(getActivity(), mReviews);
@@ -152,6 +152,7 @@ public class DetailActivityFragment extends Fragment {
         videoAdapter.notifyDataSetChanged();
         mReviewRecycleView.setHasFixedSize(true);
         mVideoRecycleView.setHasFixedSize(true);
+
         mReviewRecycleView.setAdapter(reviewAdapter);
         mVideoRecycleView.setAdapter(videoAdapter);
 
@@ -185,6 +186,12 @@ public class DetailActivityFragment extends Fragment {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(mPoster);
 
+//        ItemClickSupport.addTo(mVideoRecycleView).setOnItemClickListener(new OnItemClickListener() {
+//            @Override
+//            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+//                Log.d(TAG, "onItemClicked: ");
+//            }
+//        });
 //        ItemClickSupport.addTo(mReviewRecycleView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
 //            @Override
 //            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
@@ -364,9 +371,13 @@ public class DetailActivityFragment extends Fragment {
             if (rowId == -1) {
                 Toast.makeText(getContext(), "Insertion FAiled", Toast.LENGTH_LONG).show();
             } else {
-                Snackbar.make(getView(), movie.getTitre() + " Added to favorite List ", Snackbar.LENGTH_LONG)
-                        .setActionTextColor(getResources().getColor(R.color.ok_color)).show();
-
+                if (VERSION.SDK_INT >= VERSION_CODES.M) {
+                    Snackbar.make(getView(), movie.getTitre() + " Added to favorite List ", Snackbar.LENGTH_LONG)
+                            .setActionTextColor(getActivity().getColor(R.color.ok_color)).show();
+                } else {
+                    Snackbar.make(getView(), movie.getTitre() + " Added to favorite List ", Snackbar.LENGTH_LONG)
+                            .show();
+                }
                 add.setImageResource(R.drawable.ic_favorit);
                 mFavorite = true;
             }

@@ -5,16 +5,15 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.scoopmovies.thesam.scoopmovies.R;
 import com.scoopmovies.thesam.scoopmovies.model.Review;
-import com.scoopmovies.thesam.scoopmovies.utils.ItemClickSupport.OnItemClickListener;
 
 import java.util.ArrayList;
-
-import de.mrapp.android.dialog.MaterialDialog;
 
 /**
  * Created by Samir Thebti  on 6/10/16.
@@ -40,8 +39,20 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.PlaceHolde
 
     @Override
     public void onBindViewHolder(PlaceHolder holder, int position) {
-        holder.reviewContent.setText(mReviews.get(position).getContent());
-        holder.reviewAuthor.setText(mReviews.get(position).getAuthor());
+        final Review review = mReviews.get(position);
+        holder.reviewContent.setText(review.getContent());
+        holder.reviewAuthor.setText(review.getAuthor());
+        holder.reviewContent.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("tag", "onItemClicked: " + review.toString());
+                new MaterialDialog.Builder(mContext)
+                        .title(review.getAuthor())
+                        .content(review.getContent())
+                        .positiveText("ok")
+                        .show();
+            }
+        });
 
     }
 
@@ -51,7 +62,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.PlaceHolde
         return mReviews.size();
     }
 
-    public class PlaceHolder extends RecyclerView.ViewHolder implements OnItemClickListener {
+    public class PlaceHolder extends RecyclerView.ViewHolder {
         public TextView reviewAuthor;
         public TextView reviewContent;
 
@@ -64,17 +75,5 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.PlaceHolde
         }
 
 
-        @Override
-        public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-            Log.d("tag", "onItemClicked: " + mReviews.get(position).toString());
-            MaterialDialog.Builder dialogBuilder = new MaterialDialog.Builder(mContext.getApplicationContext(), R.style.MaterialDialog_Light);
-            dialogBuilder.setTitle(mReviews.get(position).getAuthor());
-            dialogBuilder.setMessage(mReviews.get(position).getContent());
-            dialogBuilder.setTitle(mReviews.get(position).getAuthor());
-            dialogBuilder.setPositiveButton(android.R.string.ok, null);
-            dialogBuilder.setNegativeButton(android.R.string.cancel, null);
-            MaterialDialog dialog = dialogBuilder.create();
-            dialog.show();
-        }
     }
 }

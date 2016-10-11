@@ -5,11 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.scoopmovies.thesam.scoopmovies.R;
-import com.scoopmovies.thesam.scoopmovies.adapter.VideosAdapter.VideoHolder;
 import com.scoopmovies.thesam.scoopmovies.model.Video;
 import com.scoopmovies.thesam.scoopmovies.utils.Utils;
 import com.squareup.picasso.Picasso;
@@ -21,10 +22,10 @@ import java.util.ArrayList;
  * ----->> thebtisam@gmail.com <<-----
  */
 
-public class VideosAdapter extends RecyclerView.Adapter<VideoHolder> {
+public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoHolder> {
     public static final String TAG = VideosAdapter.class.getSimpleName();
-    private Context mContext;
-    private ArrayList<Video> mVideos;
+    private final Context mContext;
+    private final ArrayList<Video> mVideos;
 
 
     public VideosAdapter(Context mContext, ArrayList<Video> mVideos) {
@@ -42,12 +43,21 @@ public class VideosAdapter extends RecyclerView.Adapter<VideoHolder> {
     @Override
     public void onBindViewHolder(VideoHolder holder, int position) {
         Video video = mVideos.get(position);
-//        Glide failed to load the videos image
+        //Glide failed to load the videos image
         Picasso.with(mContext)
                 .load(Utils.getThumbnailUrl(video))
                 .into(holder.videoImageView);
-        Log.d(TAG, "onBindViewHolder: " + Utils.getThumbnailUrl(video));
+        holder.playImageView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "onClick: ");
+                // TODO: 11/10/16 launch the play youtube action here 
+            }
+        });
+
+
     }
+
 
     @Override
     public int getItemCount() {
@@ -55,11 +65,17 @@ public class VideosAdapter extends RecyclerView.Adapter<VideoHolder> {
     }
 
     public class VideoHolder extends RecyclerView.ViewHolder {
-        public ImageView videoImageView;
+        public final ImageView videoImageView;
+        public final ImageView playImageView;
+        public final FrameLayout frameLayout;
 
         public VideoHolder(View itemView) {
             super(itemView);
+            playImageView = (ImageView) itemView.findViewById(R.id.VideoPreviewPlayButton);
+            frameLayout = (FrameLayout) itemView.findViewById(R.id.videoitem);
             videoImageView = (ImageView) itemView.findViewById(R.id.videoimageview);
+
+
         }
 
     }
