@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground"
     android:orientation="vertical"
-    android:padding="2dp"
+    android:padding="@dimen/cardview_default_elevation"
     >
 
 
@@ -30,10 +30,10 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#bd000000"
+            android:background="@color/cardview_shadow_start_color"
             android:gravity="bottom|center"
             android:textColor="@color/cardview_light_background"
-            android:textSize="16sp"
+            android:textSize="@dimen/titel_movie_mainscreen"
             />
     </LinearLayout>
 

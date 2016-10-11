@@ -15,4 +15,9 @@
     <dimen name="categorie_dimen">14sp</dimen>
     <dimen name="video_height">180dp</dimen>
     <dimen name="video_width">240dp</dimen>
+    <dimen name="averge_item_size">24sp</dimen>
+    <dimen name="movie_title_size">18sp</dimen>
+    <dimen name="play_image_size">60dp</dimen>
+    <dimen name="revies_items_padding">4dp</dimen>
+    <dimen name="titel_movie_mainscreen">16sp</dimen>
 </resources>

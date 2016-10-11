@@ -138,23 +138,6 @@ public class DetailActivityFragment extends Fragment {
         mCoverImageView = (ImageView) rootView.findViewById(R.id.movie_detail_poster);
         mReviewRecycleView = (RecyclerView) rootView.findViewById(R.id.reviews);
         mVideoRecycleView = (RecyclerView) rootView.findViewById(R.id.trailler);
-        LinearLayoutManager layoutManager
-                = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
-        //Review & videos RecyclerView settings
-
-        reviewAdapter = new ReviewAdapter(getActivity(), mReviews);
-        videoAdapter = new VideosAdapter(getActivity(), mVideos);
-        mReviewRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mVideoRecycleView.setLayoutManager(layoutManager);
-        mVideoRecycleView.setNestedScrollingEnabled(false);
-        mReviewRecycleView.setNestedScrollingEnabled(false);
-        reviewAdapter.notifyDataSetChanged();
-        videoAdapter.notifyDataSetChanged();
-        mReviewRecycleView.setHasFixedSize(true);
-        mVideoRecycleView.setHasFixedSize(true);
-
-        mReviewRecycleView.setAdapter(reviewAdapter);
-        mVideoRecycleView.setAdapter(videoAdapter);
 
 
         add = (FloatingActionButton) rootView.findViewById(R.id.addtofavorite);
@@ -185,27 +168,6 @@ public class DetailActivityFragment extends Fragment {
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(mPoster);
-
-//        ItemClickSupport.addTo(mVideoRecycleView).setOnItemClickListener(new OnItemClickListener() {
-//            @Override
-//            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-//                Log.d(TAG, "onItemClicked: ");
-//            }
-//        });
-//        ItemClickSupport.addTo(mReviewRecycleView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
-//            @Override
-//            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-//                Log.d(TAG, "onItemClicked: " + mReviews.get(position).toString());
-//                MaterialDialog.Builder dialogBuilder = new MaterialDialog.Builder(getActivity().getApplicationContext(), R.style.MaterialDialog_Light);
-//                dialogBuilder.setTitle(mReviews.get(position).getAuthor());
-//                dialogBuilder.setMessage(mReviews.get(position).getContent());
-//                dialogBuilder.setTitle(mReviews.get(position).getAuthor());
-//                dialogBuilder.setPositiveButton(android.R.string.ok, null);
-//                dialogBuilder.setNegativeButton(android.R.string.cancel, null);
-//                MaterialDialog dialog = dialogBuilder.create();
-//                dialog.show();
-//            }
-//        });
         return rootView;
     }
 
@@ -218,7 +180,23 @@ public class DetailActivityFragment extends Fragment {
             mCoverImageView.setTransitionName(
                     Utils.SHARED_TRANSITION_NAME + moviePosition);
         }
+        LinearLayoutManager layoutManager
+                = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+        //Review & videos RecyclerView settings
 
+        reviewAdapter = new ReviewAdapter(getActivity(), mReviews);
+        videoAdapter = new VideosAdapter(getActivity(), mVideos);
+        mReviewRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mVideoRecycleView.setLayoutManager(layoutManager);
+        mVideoRecycleView.setNestedScrollingEnabled(false);
+        mReviewRecycleView.setNestedScrollingEnabled(false);
+        reviewAdapter.notifyDataSetChanged();
+        videoAdapter.notifyDataSetChanged();
+        mReviewRecycleView.setHasFixedSize(true);
+        mVideoRecycleView.setHasFixedSize(true);
+
+        mReviewRecycleView.setAdapter(reviewAdapter);
+        mVideoRecycleView.setAdapter(videoAdapter);
 
         add.setOnClickListener(new OnClickListener() {
             @Override
@@ -228,6 +206,7 @@ public class DetailActivityFragment extends Fragment {
                 }
             }
         });
+
     }
 
     public void actionShare(String content) {
@@ -247,7 +226,10 @@ public class DetailActivityFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.share) {
-            actionShare(mMovie.toString());
+            if (mVideos != null) {
+                actionShare(Utils.YOUTUBE_PLAY_URL_BASE + mVideos.get(0).getKey());
+            }
+
         }
         return super.onOptionsItemSelected(item);
     }
