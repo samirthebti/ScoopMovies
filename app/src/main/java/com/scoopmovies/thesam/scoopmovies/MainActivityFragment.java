@@ -105,6 +105,18 @@ public class MainActivityFragment extends Fragment {
 
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(getString(R.string.sharedpref), mCurentSortby);
+        editor.apply();
+        SharedPreferences.Editor editor1 = sharedPref.edit();
+        editor1.putInt(getString(R.string.positionpref), mCurrentPosition);
+        editor1.apply();
+
+    }
+
     public MainActivityFragment() {
         mDesiredColumnWidth = R.dimen.desired_column_width;
         setHasOptionsMenu(true);
@@ -146,15 +158,13 @@ public class MainActivityFragment extends Fragment {
         mRecyclerView.setNestedScrollingEnabled(false);
         if (savedInstanceState == null || !savedInstanceState.containsKey(Utils.PARC_MOVIES_TAG)) {
             mChoix = mCurentSortby;
-            try {
-                if (!mCurentSortby.equals(FAVORITE)) {
-                    movies = getMovies(getActivity(), mChoix);
-                } else {
-                    movies = getFavorit();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+
+            if (!mCurentSortby.equals(FAVORITE)) {
+                movies = getMovies(getActivity(), mChoix);
+            } else {
+                movies = getFavorit();
             }
+
         } else if (savedInstanceState != null && savedInstanceState.containsKey(Utils.PARC_MOVIES_TAG)) {
             movies = savedInstanceState.getParcelableArrayList(Utils.PARC_MOVIES_TAG);
         }
@@ -198,12 +208,10 @@ public class MainActivityFragment extends Fragment {
             mChoix = Utils.TOP_RATED;
             if (!mCurentSortby.equals(mChoix)) {
                 movies.clear();
-                try {
-                    movies = getMovies(getActivity(), mChoix);
-                    mGridAdapter.notifyDataSetChanged();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+
+                movies = getMovies(getActivity(), mChoix);
+                mGridAdapter.notifyDataSetChanged();
+
                 mRecyclerView.getRecycledViewPool().clear();
                 mCurentSortby = mChoix;
             }
@@ -212,12 +220,10 @@ public class MainActivityFragment extends Fragment {
             mChoix = Utils.POPULAR;
             if (!mCurentSortby.equals(mChoix)) {
                 movies.clear();
-                try {
-                    movies = getMovies(getActivity(), mChoix);
-                    mGridAdapter.notifyDataSetChanged();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+
+                movies = getMovies(getActivity(), mChoix);
+                mGridAdapter.notifyDataSetChanged();
+
                 mRecyclerView.getRecycledViewPool().clear();
                 mCurentSortby = mChoix;
             }
@@ -226,12 +232,10 @@ public class MainActivityFragment extends Fragment {
             mChoix = Utils.FAVORITE;
             if (!mCurentSortby.equals(mChoix)) {
                 movies.clear();
-                try {
-                    movies = getFavorit();
-                    mGridAdapter.notifyDataSetChanged();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+
+                movies = getFavorit();
+                mGridAdapter.notifyDataSetChanged();
+
                 mRecyclerView.getRecycledViewPool().clear();
                 mCurentSortby = mChoix;
             }
