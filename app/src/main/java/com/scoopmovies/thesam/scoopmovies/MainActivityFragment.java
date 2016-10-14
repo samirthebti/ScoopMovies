@@ -102,17 +102,17 @@ public class MainActivityFragment extends Fragment {
         editor1.putInt(getString(R.string.positionpref), mCurrentPosition);
         editor1.apply();
     }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(getString(R.string.sharedpref), mCurentSortby);
-        editor.apply();
-        SharedPreferences.Editor editor1 = sharedPref.edit();
-        editor1.putInt(getString(R.string.positionpref), mCurrentPosition);
-        editor1.apply();
-    }
+//
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        SharedPreferences.Editor editor = sharedPref.edit();
+//        editor.putString(getString(R.string.sharedpref), mCurentSortby);
+//        editor.apply();
+//        SharedPreferences.Editor editor1 = sharedPref.edit();
+//        editor1.putInt(getString(R.string.positionpref), mCurrentPosition);
+//        editor1.apply();
+//    }
 
     public MainActivityFragment() {
         mDesiredColumnWidth = R.dimen.desired_column_width;
