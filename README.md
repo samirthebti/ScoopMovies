@@ -22,7 +22,11 @@ Recyclerview-animators:2.2.4
 
 Screen Shots
 ------------
-<img height="400"  src="14642809_1126402730772141_1518761124_n.png">
-<img height="400"  src="14642987_1126402707438810_2078014620_n.png"><br>
+<img height="400"  src="14642809_1126402730772141_1518761124_n.png"><br>
+<img height="400"  src="14642987_1126402707438810_2078014620_n.png">
 <img height="400"  src="14741648_1126403897438691_1788392651_n.png"><br>
+Demo
+----
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/cU8DXF7W09c" frameborder="0" allowfullscreen></iframe>
 
