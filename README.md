@@ -27,6 +27,6 @@ Screen Shots
 <img height="400"  src="14741648_1126403897438691_1788392651_n.png"><br>
 Demo
 ----
+https://www.youtube.com/watch?v=cU8DXF7W09c
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/cU8DXF7W09c" frameborder="0" allowfullscreen></iframe>
 
